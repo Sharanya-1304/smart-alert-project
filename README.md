@@ -469,4 +469,5 @@ If you find this project helpful for your placement interviews or learning, plea
 
 **Made with ❤️ for helping people stay safe**
 #   S M A R T - A L E R T  
+ #   s m a r t - a l e r t - p r o j e c t  
  
