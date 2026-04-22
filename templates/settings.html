@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Smart Alert</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 30px 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-header i {
+            font-size: 28px;
+            color: #667eea;
+        }
+
+        .sidebar-header span {
+            font-weight: 700;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .sidebar-nav {
+            padding: 20px 0;
+        }
+
+        .nav-item {
+            padding: 15px 20px;
+            color: #666;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item i {
+            font-size: 20px;
+            width: 24px;
+        }
+
+        .nav-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            border-left-color: #667eea;
+        }
+
+        .nav-item.active {
+            background: rgba(102, 126, 234, 0.15);
+            color: #667eea;
+            border-left-color: #667eea;
+            font-weight: 600;
+        }
+
+        .sidebar-footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            padding: 0 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding-top: 20px;
+        }
+
+        .logout-btn {
+            width: 100%;
+            padding: 12px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            margin-left: 280px;
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-header h1 {
+            margin: 0 0 10px 0;
+            font-size: 32px;
+            color: #333;
+        }
+
+        .page-header p {
+            margin: 0;
+            color: #999;
+        }
+
+        .settings-container {
+            max-width: 600px;
+        }
+
+        .settings-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .settings-card h2 {
+            margin: 0 0 25px 0;
+            font-size: 22px;
+            color: #333;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group input:disabled {
+            background: #f5f5f5;
+            color: #999;
+        }
+
+        .form-group-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .form-group-info .editable-icon {
+            color: #999;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5564d1;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-danger {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+        }
+
+        .message {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 14px;
+        }
+
+        .message.success {
+            background: rgba(76, 175, 80, 0.15);
+            color: #4caf50;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .message.error {
+            background: rgba(244, 67, 54, 0.15);
+            color: #f44336;
+            border: 1px solid rgba(244, 67, 54, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-shield-alt"></i>
+            <span>Smart Alert</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="/dashboard" class="nav-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="/detection" class="nav-item">
+                <i class="fas fa-camera"></i>
+                <span>Start Detection</span>
+            </a>
+            <a href="/history" class="nav-item">
+                <i class="fas fa-history"></i>
+                <span>Alert History</span>
+            </a>
+            <a href="/settings" class="nav-item active">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="/logout" class="logout-btn">Logout</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="page-header">
+            <h1>Settings</h1>
+            <p>Manage your account and preferences</p>
+        </div>
+
+        <div class="settings-container">
+            <!-- Profile Settings -->
+            <div class="settings-card">
+                <h2>Profile Information</h2>
+                <div id="profileMessage"></div>
+                <form id="profileForm">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Account Type</label>
+                        <input type="text" id="role" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="joined">Member Since</label>
+                        <input type="text" id="joined" disabled>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Caregiver Alert Settings -->
+            <div class="settings-card">
+                <h2>Caregiver Alert Settings</h2>
+                <div id="caregiverMessage"></div>
+                <form id="caregiverForm">
+                    <div class="form-group">
+                        <label for="caregiverEmail">Caregiver Email Address</label>
+                        <input type="email" id="caregiverEmail" placeholder="example@email.com" required>
+                    </div>
+                    <p style="color: #666; font-size: 13px; margin-bottom: 15px;">
+                        📧 Enter your caregiver's email. When fire or fall is detected, alerts will be sent to this email with immediate notifications.
+                    </p>
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary">Save Caregiver Email</button>
+                        <button type="button" class="btn btn-secondary" onclick="resetCaregiverForm()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Password Settings -->
+            <div class="settings-card">
+                <h2>Change Password</h2>
+                <div id="passwordMessage"></div>
+                <form id="passwordForm">
+                    <div class="form-group">
+                        <label for="currentPassword">Current Password</label>
+                        <input type="password" id="currentPassword" placeholder="Enter your current password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">New Password</label>
+                        <input type="password" id="newPassword" placeholder="Enter your new password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm New Password</label>
+                        <input type="password" id="confirmPassword" placeholder="Confirm your new password" required>
+                    </div>
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary">Update Password</button>
+                        <button type="button" class="btn btn-secondary" onclick="resetPasswordForm()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load profile information
+        async function loadProfileInfo() {
+            try {
+                const response = await fetch('/api/user/profile');
+                const user = await response.json();
+
+                document.getElementById('username').value = user.username;
+                document.getElementById('email').value = user.email;
+                document.getElementById('role').value = user.role.charAt(0).toUpperCase() + user.role.slice(1);
+                document.getElementById('joined').value = user.created_at;
+                document.getElementById('caregiverEmail').value = user.caregiver_email || '';
+            } catch (error) {
+                console.error('Error loading profile:', error);
+            }
+        }
+
+        // Caregiver email form submission
+        document.getElementById('caregiverForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const caregiverEmail = document.getElementById('caregiverEmail').value;
+            const messageDiv = document.getElementById('caregiverMessage');
+
+            if (!caregiverEmail.includes('@') || !caregiverEmail.includes('.')) {
+                showMessage(messageDiv, 'Please enter a valid email address', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/user/caregiver-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ caregiver_email: caregiverEmail })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showMessage(messageDiv, '✅ Caregiver email saved successfully! Alerts will be sent to ' + caregiverEmail, 'success');
+                } else {
+                    showMessage(messageDiv, data.message || 'Failed to save caregiver email', 'error');
+                }
+            } catch (error) {
+                showMessage(messageDiv, 'An error occurred. Please try again.', 'error');
+            }
+        });
+
+        function resetCaregiverForm() {
+            document.getElementById('caregiverForm').reset();
+            document.getElementById('caregiverMessage').style.display = 'none';
+        }
+
+        // Password form submission
+        document.getElementById('passwordForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const messageDiv = document.getElementById('passwordMessage');
+
+            if (newPassword !== confirmPassword) {
+                showMessage(messageDiv, 'New passwords do not match', 'error');
+                return;
+            }
+
+            if (newPassword.length < 8) {
+                showMessage(messageDiv, 'Password must be at least 8 characters long', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/user/update-password', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ current_password: currentPassword, new_password: newPassword, confirm_password: confirmPassword })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showMessage(messageDiv, data.message, 'success');
+                    document.getElementById('passwordForm').reset();
+                } else {
+                    showMessage(messageDiv, data.message, 'error');
+                }
+            } catch (error) {
+                showMessage(messageDiv, 'An error occurred. Please try again.', 'error');
+            }
+        });
+
+        function resetPasswordForm() {
+            document.getElementById('passwordForm').reset();
+            document.getElementById('passwordMessage').style.display = 'none';
+        }
+
+        function showMessage(element, message, type) {
+            element.textContent = message;
+            element.className = `message ${type}`;
+            element.style.display = 'block';
+
+            if (type === 'success') {
+                setTimeout(() => {
+                    element.style.display = 'none';
+                }, 3000);
+            }
+        }
+
+        // Load data on page load
+        document.addEventListener('DOMContentLoaded', loadProfileInfo);
+    </script>
+</body>
+</html>

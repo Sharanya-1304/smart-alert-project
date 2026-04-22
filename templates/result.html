@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detection Result - Smart Alert</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Red Alert Banner */
+        .alert-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(90deg, #ff0000, #cc0000);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(255, 0, 0, 0.5);
+            animation: pulse 1.5s infinite;
+            display: none;
+        }
+
+        .alert-banner.active {
+            display: block;
+        }
+
+        .alert-banner h2 {
+            font-size: 32px;
+            font-weight: 800;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .alert-banner p {
+            margin: 10px 0 0 0;
+            font-size: 16px;
+            opacity: 0.95;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: translateY(0); }
+            50% { opacity: 0.9; transform: translateY(-5px); }
+        }
+
+        .result-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            width: 100%;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .result-header {
+            padding: 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .result-header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .result-header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .result-content {
+            padding: 40px;
+        }
+
+        .status-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        .status-icon.fire {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e7b);
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+        }
+
+        .status-icon.fall {
+            background: linear-gradient(135deg, #ffc400, #ffb300);
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 196, 0, 0.4);
+        }
+
+        .status-icon.normal {
+            background: linear-gradient(135deg, #4caf50, #66bb6a);
+            color: white;
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.4);
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .detection-result {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .detection-result h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            color: #333;
+            font-weight: 800;
+        }
+
+        .detection-result .confidence {
+            font-size: 28px;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .detection-result .timestamp {
+            font-size: 14px;
+            color: #999;
+            margin-top: 10px;
+        }
+
+        .alert-details {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .alert-details h3 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .notification-list {
+            list-style: none;
+        }
+
+        .notification-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s;
+        }
+
+        .notification-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .notification-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .notification-icon.voice {
+            background: rgba(255, 107, 107, 0.2);
+            color: #ff6b6b;
+        }
+
+        .notification-icon.email {
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+        }
+
+        .notification-icon.sms {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+        }
+
+        .notification-icon.banner {
+            background: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+        }
+
+        .notification-text {
+            flex: 1;
+        }
+
+        .notification-text strong {
+            display: block;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 3px;
+        }
+
+        .notification-text span {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .notification-status {
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .notification-status.sent {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+        }
+
+        .notification-status.active {
+            background: rgba(255, 107, 107, 0.2);
+            color: #ff6b6b;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #333;
+            border: 2px solid #e0e0e0;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
+
+        .video-info {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .video-info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .video-info-item:last-child {
+            border-bottom: none;
+        }
+
+        .video-info-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .video-info-value {
+            color: #333;
+            font-weight: 600;
+        }
+
+        /* Video Player */
+        .video-player-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-player-section h3 {
+            margin: 0 0 20px 0;
+            font-size: 18px;
+            color: #333;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .video-player {
+            width: 100%;
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-player video {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-height: 500px;
+        }
+
+        @media (max-width: 768px) {
+            .result-container {
+                margin-top: 60px;
+            }
+
+            .result-header h1 {
+                font-size: 28px;
+            }
+
+            .detection-result h2 {
+                font-size: 32px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Red Alert Banner (shows for fire/fall detection) -->
+    <div class="alert-banner" id="alertBanner">
+        <h2>⚠ EMERGENCY ALERT</h2>
+        <p id="alertMessage">Critical situation detected! Caregivers have been notified.</p>
+    </div>
+
+    <!-- Result Container -->
+    <div class="result-container">
+        <div class="result-header">
+            <h1>Detection Analysis Complete</h1>
+            <p>Your video has been processed and analyzed</p>
+        </div>
+
+        <div class="result-content">
+            <!-- Detection Result -->
+            <div class="detection-result">
+                <div class="status-icon {{ 'fire' if 'fire' in video.detection_result else ('fall' if 'fall' in video.detection_result else 'normal') }}" id="statusIcon">
+                    {% if video.detection_result == 'fire_and_fall' %}
+                        🔥🚶
+                    {% elif video.detection_result == 'fire' %}
+                        🔥
+                    {% elif video.detection_result == 'fall' %}
+                        🚶
+                    {% else %}
+                        ✓
+                    {% endif %}
+                </div>
+
+                <h2 id="detectionType">
+                    {% if video.detection_result == 'fire_and_fall' %}
+                        FIRE & FALL DETECTED
+                    {% elif video.detection_result == 'fire' %}
+                        FIRE DETECTED
+                    {% elif video.detection_result == 'fall' %}
+                        FALL DETECTED
+                    {% else %}
+                        NO THREATS DETECTED
+                    {% endif %}
+                </h2>
+
+                {% if video.confidence %}
+                <div class="confidence">
+                    Confidence: <span id="confidenceValue">{{ (video.confidence * 100)|round|int }}%</span>
+                </div>
+                {% endif %}
+
+                <div class="timestamp">
+                    Processed: {{ video.upload_timestamp.strftime("%B %d, %Y at %I:%M %p") }}
+                </div>
+            </div>
+
+            <!-- Video Player -->
+            <div class="video-player-section">
+                <h3><i class="fas fa-video"></i> Detected Video</h3>
+                <div class="video-player">
+                    <video controls>
+                        <source src="/uploads/{{ video.filename }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <!-- Alert Details (Only show if fire or fall detected) -->
+            {% if video.detection_result in ['fire', 'fall', 'fire_and_fall'] %}
+            <div class="alert-details">
+                <h3><i class="fas fa-bell"></i> Alert Notifications</h3>
+
+                <ul class="notification-list">
+                    <li class="notification-item">
+                        <div class="notification-icon banner">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="notification-text">
+                            <strong>Red Banner Alert</strong>
+                            <span>Emergency banner displayed on screen</span>
+                        </div>
+                        <span class="notification-status active">ACTIVE</span>
+                    </li>
+
+                    <li class="notification-item">
+                        <div class="notification-icon voice">
+                            <i class="fas fa-volume-up"></i>
+                        </div>
+                        <div class="notification-text">
+                            <strong>Voice Alert</strong>
+                            <span>Audio warning message played</span>
+                        </div>
+                        <span class="notification-status sent">SENT</span>
+                    </li>
+
+                    <li class="notification-item">
+                        <div class="notification-icon email">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="notification-text">
+                            <strong>Email Notification</strong>
+                            <span>Emergency alert sent to caregivers</span>
+                        </div>
+                        <span class="notification-status sent">SENT</span>
+                    </li>
+
+                    <li class="notification-item">
+                        <div class="notification-icon sms">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="notification-text">
+                            <strong>SMS Alert</strong>
+                            <span>Text message sent to emergency contacts</span>
+                        </div>
+                        <span class="notification-status sent">SENT</span>
+                    </li>
+                </ul>
+            </div>
+            {% endif %}
+
+            <!-- Video Information -->
+            <div class="alert-details">
+                <h3><i class="fas fa-info-circle"></i> Video Information</h3>
+                <div class="video-info">
+                    <div class="video-info-item">
+                        <span class="video-info-label">Filename:</span>
+                        <span class="video-info-value">{{ video.original_filename }}</span>
+                    </div>
+                    <div class="video-info-item">
+                        <span class="video-info-label">File Size:</span>
+                        <span class="video-info-value">{{ (video.file_size / (1024*1024))|round(2) }} MB</span>
+                    </div>
+                    <div class="video-info-item">
+                        <span class="video-info-label">Processing Time:</span>
+                        <span class="video-info-value">
+                            {% if video.processing_time %}
+                                {{ video.processing_time|round(2) }} seconds
+                            {% else %}
+                                N/A
+                            {% endif %}
+                        </span>
+                    </div>
+                    <div class="video-info-item">
+                        <span class="video-info-label">Status:</span>
+                        <span class="video-info-value">{{ video.processing_status.upper() }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <a href="/dashboard" class="btn btn-primary">
+                    <i class="fas fa-chart-line"></i>
+                    View Dashboard
+                </a>
+                <a href="/detection" class="btn btn-secondary">
+                    <i class="fas fa-camera"></i>
+                    Analyze Another Video
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Show alert banner if fire or fall detected
+        const detectionResult = '{{ video.detection_result }}';
+
+        if (detectionResult === 'fire' || detectionResult === 'fall' || detectionResult === 'fire_and_fall') {
+            const banner = document.getElementById('alertBanner');
+            const alertMsg = document.getElementById('alertMessage');
+
+            if (detectionResult === 'fire_and_fall') {
+                alertMsg.textContent = '🔥🚶 FIRE AND FALL DETECTED! Evacuate immediately and assist the fallen person! Emergency services notified.';
+            } else if (detectionResult === 'fire') {
+                alertMsg.textContent = '🔥 FIRE DETECTED! Evacuate immediately! Emergency services have been alerted.';
+            } else if (detectionResult === 'fall') {
+                alertMsg.textContent = '🚶 FALL DETECTED! Person needs immediate assistance! Caregivers notified.';
+            }
+
+            banner.classList.add('active');
+
+            // Play alert sound
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(alertMsg.textContent);
+                utterance.rate = 1.2;
+                utterance.pitch = 1.2;
+                utterance.volume = 1.0;
+                speechSynthesis.speak(utterance);
+            }
+
+            // Vibration if supported
+            if ('vibrate' in navigator) {
+                navigator.vibrate([200, 100, 200, 100, 200]);
+            }
+        }
+
+        // Animate confidence counter
+        const confidenceEl = document.getElementById('confidenceValue');
+        if (confidenceEl) {
+            const targetValue = parseInt(confidenceEl.textContent);
+            let currentValue = 0;
+            const increment = targetValue / 50;
+            const timer = setInterval(() => {
+                currentValue += increment;
+                if (currentValue >= targetValue) {
+                    currentValue = targetValue;
+                    clearInterval(timer);
+                }
+                confidenceEl.textContent = Math.round(currentValue) + '%';
+            }, 20);
+        }
+    </script>
+</body>
+</html>

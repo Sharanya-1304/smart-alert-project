@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Smart Alert</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 30px 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-header i {
+            font-size: 28px;
+            color: #667eea;
+        }
+
+        .sidebar-header span {
+            font-weight: 700;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .sidebar-nav {
+            padding: 20px 0;
+        }
+
+        .nav-item {
+            padding: 15px 20px;
+            color: #666;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item i {
+            font-size: 20px;
+            width: 24px;
+        }
+
+        .nav-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            border-left-color: #667eea;
+        }
+
+        .nav-item.active {
+            background: rgba(102, 126, 234, 0.15);
+            color: #667eea;
+            border-left-color: #667eea;
+            font-weight: 600;
+        }
+
+        .sidebar-footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            padding: 0 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding-top: 20px;
+        }
+
+        .logout-btn {
+            width: 100%;
+            padding: 12px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            margin-left: 280px;
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .user-text h3 {
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .user-text p {
+            margin: 0;
+            font-size: 13px;
+            color: #999;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .stat-icon.fire { background: rgba(255, 107, 107, 0.2); color: #ff6b6b; }
+        .stat-icon.fall { background: rgba(255, 196, 0, 0.2); color: #ffc400; }
+        .stat-icon.proximity { background: rgba(255, 152, 0, 0.2); color: #ff9800; }
+        .stat-icon.critical { background: rgba(244, 67, 54, 0.2); color: #f44336; }
+        .stat-icon.total { background: rgba(76, 175, 80, 0.2); color: #4caf50; }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #999;
+            margin-top: 10px;
+        }
+
+        .alerts-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 15px;
+        }
+
+        .section-header h2 {
+            font-size: 24px;
+            color: #333;
+            margin: 0;
+        }
+
+        .view-all-btn {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .view-all-btn:hover {
+            color: #764ba2;
+        }
+
+        .alerts-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .alerts-table th {
+            background: #f9f9f9;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #666;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 14px;
+        }
+
+        .alerts-table td {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .alert-type {
+            font-weight: 600;
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+
+        .type-fire { background: rgba(255, 107, 107, 0.2); color: #ff6b6b; }
+        .type-fall { background: rgba(255, 196, 0, 0.2); color: #ffc400; }
+        .type-proximity { background: rgba(255, 152, 0, 0.2); color: #ff9800; }
+
+        .severity {
+            font-weight: 600;
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+
+        .severity-critical { background: rgba(244, 67, 54, 0.2); color: #f44336; }
+        .severity-warning { background: rgba(255, 193, 7, 0.2); color: #ffc107; }
+        .severity-info { background: rgba(33, 150, 243, 0.2); color: #2196f3; }
+
+        .no-alerts {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        .no-alerts i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            opacity: 0.3;
+        }
+
+        /* Charts Section */
+        .charts-section {
+            margin: 30px 0;
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .chart-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .chart-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .chart-card h3 {
+            margin: 0 0 20px 0;
+            font-size: 18px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-bottom: 20px;
+        }
+
+        .activity-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .activity-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-item span {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .activity-count {
+            font-weight: 700;
+            color: #667eea;
+            font-size: 16px;
+        }
+
+        .analytics-tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            color: #999;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-btn:hover {
+            color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-shield-alt"></i>
+            <span>Smart Alert</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="/dashboard" class="nav-item active">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="/detection" class="nav-item">
+                <i class="fas fa-camera"></i>
+                <span>Start Detection</span>
+            </a>
+            <a href="/history" class="nav-item">
+                <i class="fas fa-history"></i>
+                <span>Alert History</span>
+            </a>
+            <a href="/settings" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="/logout" class="logout-btn">Logout</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <h1>Dashboard</h1>
+            <div class="user-info">
+                <div class="user-avatar" id="userInitial"></div>
+                <div class="user-text">
+                    <h3 id="userName">User</h3>
+                    <p id="userRole">Standard User</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-value" id="totalAlerts">0</div>
+                        <div class="stat-label">Total Alerts</div>
+                    </div>
+                    <div class="stat-icon total">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-value" id="fireAlerts">0</div>
+                        <div class="stat-label">Fire Detected</div>
+                    </div>
+                    <div class="stat-icon fire">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-value" id="fallAlerts">0</div>
+                        <div class="stat-label">Falls Detected</div>
+                    </div>
+                    <div class="stat-icon fall">
+                        <i class="fas fa-person-falling"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-value" id="proximityAlerts">0</div>
+                        <div class="stat-label">Proximity Events</div>
+                    </div>
+                    <div class="stat-icon proximity">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-value" id="criticalAlerts">0</div>
+                        <div class="stat-label">Critical Alerts</div>
+                    </div>
+                    <div class="stat-icon critical">
+                        <i class="fas fa-skull-crossbones"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics Section -->
+        <section class="charts-section">
+            <!-- Analytics Overview Cards -->
+            <div class="stats-grid" id="analyticsStats">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-value" id="totalUsers">0</div>
+                            <div class="stat-label">Total Users</div>
+                        </div>
+                        <div class="stat-icon total">
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-value" id="activeUsers">0</div>
+                            <div class="stat-label">Active Now</div>
+                        </div>
+                        <div class="stat-icon fire">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-value" id="newUsersToday">0</div>
+                            <div class="stat-label">New Users Today</div>
+                        </div>
+                        <div class="stat-icon fall">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-value" id="viewsToday">0</div>
+                            <div class="stat-label">Page Views Today</div>
+                        </div>
+                        <div class="stat-icon proximity">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-value" id="totalPageViews">0</div>
+                            <div class="stat-label">Total Views</div>
+                        </div>
+                        <div class="stat-icon critical">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Grid -->
+            <div class="charts-grid">
+                <!-- User Growth Chart -->
+                <div class="chart-card">
+                    <h3>User Growth (Last 7 Days)</h3>
+                    <div class="chart-container">
+                        <canvas id="userGrowthChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Page Views Chart -->
+                <div class="chart-card">
+                    <h3>Page Views (Last 7 Days)</h3>
+                    <div class="chart-container">
+                        <canvas id="pageViewsChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Detection Activity Chart -->
+                <div class="chart-card">
+                    <h3>Detection Activity (Last 7 Days)</h3>
+                    <div class="chart-container">
+                        <canvas id="detectionActivityChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Hourly Activity Chart -->
+                <div class="chart-card">
+                    <h3>Hourly Activity Today</h3>
+                    <div class="chart-container">
+                        <canvas id="hourlyActivityChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Popular Pages -->
+                <div class="chart-card">
+                    <h3>📄 Most Visited Pages</h3>
+                    <ul class="activity-list" id="popularPagesList">
+                        <li class="activity-item">Loading...</li>
+                    </ul>
+                </div>
+
+                <!-- Most Active Users -->
+                <div class="chart-card">
+                    <h3>👥 Most Active Users</h3>
+                    <ul class="activity-list" id="activeUsersList">
+                        <li class="activity-item">Loading...</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Alerts -->
+        <div class="alerts-section">
+            <div class="section-header">
+                <h2>Recent Alerts</h2>
+                <a href="/history" class="view-all-btn">View All →</a>
+            </div>
+            <table class="alerts-table" id="alertsTable">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Time</th>
+                        <th>Severity</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody id="alertsBody">
+                    <tr>
+                        <td colspan="4" class="no-alerts">
+                            <i class="fas fa-inbox"></i>
+                            <div>No alerts yet</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let userGrowthChart, pageViewsChart, detectionActivityChart, hourlyActivityChart;
+
+        // Load user profile
+        async function loadUserProfile() {
+            try {
+                const response = await fetch('/api/user/profile');
+                const user = await response.json();
+                
+                document.getElementById('userName').textContent = user.username;
+                document.getElementById('userRole').textContent = user.role.charAt(0).toUpperCase() + user.role.slice(1);
+                document.getElementById('userInitial').textContent = user.username.charAt(0).toUpperCase();
+            } catch (error) {
+                console.error('Error loading profile:', error);
+            }
+        }
+
+        // Load statistics
+        async function loadStats() {
+            try {
+                const response = await fetch('/api/stats');
+                const stats = await response.json();
+                
+                document.getElementById('totalAlerts').textContent = stats.total_alerts;
+                document.getElementById('fireAlerts').textContent = stats.fire_alerts;
+                document.getElementById('fallAlerts').textContent = stats.fall_alerts;
+                document.getElementById('proximityAlerts').textContent = stats.proximity_alerts;
+                document.getElementById('criticalAlerts').textContent = stats.critical_alerts;
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+
+        // Load analytics overview
+        async function loadAnalyticsOverview() {
+            try {
+                const response = await fetch('/api/analytics/overview');
+                const data = await response.json();
+                
+                document.getElementById('totalUsers').textContent = data.total_users;
+                document.getElementById('activeUsers').textContent = data.active_users;
+                document.getElementById('newUsersToday').textContent = data.new_users_today;
+                document.getElementById('viewsToday').textContent = data.views_today;
+                document.getElementById('totalPageViews').textContent = data.total_page_views;
+            } catch (error) {
+                console.error('Error loading analytics overview:', error);
+            }
+        }
+
+        // Load recent alerts
+        async function loadAlerts() {
+            try {
+                const response = await fetch('/api/alerts?limit=5');
+                const alerts = await response.json();
+                
+                const tbody = document.getElementById('alertsBody');
+                
+                if (alerts.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="4" class="no-alerts"><i class="fas fa-inbox"></i><div>No alerts yet</div></td></tr>';
+                    return;
+                }
+                
+                tbody.innerHTML = alerts.map(alert => `
+                    <tr>
+                        <td><span class="alert-type type-${alert.type}">${alert.type.toUpperCase()}</span></td>
+                        <td>${alert.timestamp}</td>
+                        <td><span class="severity severity-${alert.severity.toLowerCase()}">${alert.severity}</span></td>
+                        <td>${alert.description || 'N/A'}</td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading alerts:', error);
+            }
+        }
+
+        // User Growth Chart
+        async function loadUserGrowthChart() {
+            try {
+                const response = await fetch('/api/analytics/user-growth');
+                const data = await response.json();
+                
+                const ctx = document.getElementById('userGrowthChart').getContext('2d');
+                
+                if (userGrowthChart) {
+                    userGrowthChart.destroy();
+                }
+                
+                userGrowthChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: data.map(d => d.date),
+                        datasets: [{
+                            label: 'New Users',
+                            data: data.map(d => d.count),
+                            borderColor: '#667eea',
+                            backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                            fill: true,
+                            tension: 0.4,
+                            borderWidth: 2,
+                            pointBackgroundColor: '#667eea',
+                            pointRadius: 5,
+                            pointHoverRadius: 7
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: { color: '#f0f0f0' }
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error loading user growth chart:', error);
+            }
+        }
+
+        // Page Views Chart
+        async function loadPageViewsChart() {
+            try {
+                const response = await fetch('/api/analytics/page-views');
+                const data = await response.json();
+                
+                const ctx = document.getElementById('pageViewsChart').getContext('2d');
+                
+                if (pageViewsChart) {
+                    pageViewsChart.destroy();
+                }
+                
+                pageViewsChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.map(d => d.date),
+                        datasets: [{
+                            label: 'Page Views',
+                            data: data.map(d => d.views),
+                            backgroundColor: [
+                                '#667eea', '#764ba2', '#ff6b6b', '#ffc400',
+                                '#ff9800', '#4caf50', '#2196f3'
+                            ],
+                            borderRadius: 8,
+                            borderSkipped: false
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        indexAxis: 'y',
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                grid: { color: '#f0f0f0' }
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error loading page views chart:', error);
+            }
+        }
+
+        // Detection Activity Chart
+        async function loadDetectionActivityChart() {
+            try {
+                const response = await fetch('/api/analytics/detection-stats');
+                const data = await response.json();
+                
+                const ctx = document.getElementById('detectionActivityChart').getContext('2d');
+                
+                if (detectionActivityChart) {
+                    detectionActivityChart.destroy();
+                }
+                
+                detectionActivityChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: data.map(d => d.date),
+                        datasets: [
+                            {
+                                label: 'Fire Alerts',
+                                data: data.map(d => d.fire),
+                                borderColor: '#ff6b6b',
+                                backgroundColor: 'rgba(255, 107, 107, 0.1)',
+                                tension: 0.4,
+                                borderWidth: 2
+                            },
+                            {
+                                label: 'Fall Alerts',
+                                data: data.map(d => d.fall),
+                                borderColor: '#ffc400',
+                                backgroundColor: 'rgba(255, 196, 0, 0.1)',
+                                tension: 0.4,
+                                borderWidth: 2
+                            },
+                            {
+                                label: 'Proximity Alerts',
+                                data: data.map(d => d.proximity),
+                                borderColor: '#ff9800',
+                                backgroundColor: 'rgba(255, 152, 0, 0.1)',
+                                tension: 0.4,
+                                borderWidth: 2
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { position: 'top' }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: { color: '#f0f0f0' }
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error loading detection activity chart:', error);
+            }
+        }
+
+        // Hourly Activity Chart
+        async function loadHourlyActivityChart() {
+            try {
+                const response = await fetch('/api/analytics/hourly-activity');
+                const data = await response.json();
+                
+                const ctx = document.getElementById('hourlyActivityChart').getContext('2d');
+                
+                if (hourlyActivityChart) {
+                    hourlyActivityChart.destroy();
+                }
+                
+                hourlyActivityChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.map(d => d.hour),
+                        datasets: [{
+                            label: 'Activities',
+                            data: data.map(d => d.activities),
+                            backgroundColor: '#667eea',
+                            borderRadius: 8,
+                            borderSkipped: false
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: { color: '#f0f0f0' }
+                            },
+                            x: {
+                                grid: { display: false }
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error loading hourly activity chart:', error);
+            }
+        }
+
+        // Popular Pages
+        async function loadPopularPages() {
+            try {
+                const response = await fetch('/api/analytics/popular-pages');
+                const pages = await response.json();
+                
+                const list = document.getElementById('popularPagesList');
+                
+                if (pages.length === 0) {
+                    list.innerHTML = '<li class="activity-item"><span>No data available</span></li>';
+                    return;
+                }
+                
+                list.innerHTML = pages.map((page, index) => `
+                    <li class="activity-item">
+                        <span>#${index + 1} ${page.page}</span>
+                        <span class="activity-count">${page.views}</span>
+                    </li>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading popular pages:', error);
+            }
+        }
+
+        // Most Active Users
+        async function loadActiveUsers() {
+            try {
+                const response = await fetch('/api/analytics/user-activity');
+                const users = await response.json();
+                
+                const list = document.getElementById('activeUsersList');
+                
+                if (users.length === 0) {
+                    list.innerHTML = '<li class="activity-item"><span>No data available</span></li>';
+                    return;
+                }
+                
+                list.innerHTML = users.map((user, index) => `
+                    <li class="activity-item">
+                        <span>👤 ${user.username}</span>
+                        <span class="activity-count">${user.page_views}</span>
+                    </li>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading active users:', error);
+            }
+        }
+
+        // Load all data on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadUserProfile();
+            loadStats();
+            loadAnalyticsOverview();
+            loadAlerts();
+            loadUserGrowthChart();
+            loadPageViewsChart();
+            loadDetectionActivityChart();
+            loadHourlyActivityChart();
+            loadPopularPages();
+            loadActiveUsers();
+            
+            // Refresh data every 30 seconds
+            setInterval(() => {
+                loadStats();
+                loadAnalyticsOverview();
+                loadAlerts();
+                loadUserGrowthChart();
+                loadPageViewsChart();
+                loadDetectionActivityChart();
+                loadHourlyActivityChart();
+                loadPopularPages();
+                loadActiveUsers();
+            }, 30000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,323 @@
+
+================================================================================
+ALERT TYPE: FIRE
+TIMESTAMP: 2026-03-23 19:04:59
+RECIPIENT: venkatajahnavi07@gmail.com
+SUBJECT: 🔥🔥🔥 FIRE EMERGENCY - SmartAlert
+MESSAGE:
+
+🔥🔥🔥 FIRE EMERGENCY ALERT 🔥🔥🔥
+
+ALERT TYPE: FIRE DETECTED
+
+A fire has been detected by the SmartAlert monitoring system.
+
+IMMEDIATE ACTIONS REQUIRED:
+1. Evacuate the building immediately
+2. Call emergency services (Fire Department)
+3. Do not use elevators
+4. Help others evacuate if safe to do so
+
+This is an automated alert from SmartAlert System.
+Time: 2026-03-23 19:04:59
+
+Stay safe!
+        
+================================================================================
+
+================================================================================
+ALERT TYPE: FIRE
+FROM: sharanyagummadavelli@gmail.com
+TO: venkatajahnavi07@gmail.com
+TIMESTAMP: 2026-03-23 19:09:07
+SUBJECT: 🔥🔥🔥 FIRE EMERGENCY - SmartAlert
+MESSAGE:
+
+🔥🔥🔥 FIRE EMERGENCY ALERT 🔥🔥🔥
+
+ALERT TYPE: FIRE DETECTED
+
+A fire has been detected by the SmartAlert monitoring system.
+
+IMMEDIATE ACTIONS REQUIRED:
+1. Evacuate the building immediately
+2. Call emergency services (Fire Department)
+3. Do not use elevators
+4. Help others evacuate if safe to do so
+
+This is an automated alert from SmartAlert System.
+Time: 2026-03-23 19:09:07
+
+Stay safe!
+        
+================================================================================
+
+================================================================================
+ALERT TYPE: FIRE
+FROM: sharanyagummadavelli@gmail.com
+TO: venkatajahnavi07@gmail.com
+TIMESTAMP: 2026-03-23 19:23:23
+SUBJECT: 🔥🔥🔥 FIRE EMERGENCY - SmartAlert
+MESSAGE:
+
+🔥🔥🔥 FIRE EMERGENCY ALERT 🔥🔥🔥
+
+ALERT TYPE: FIRE DETECTED
+
+A fire has been detected by the SmartAlert monitoring system.
+
+IMMEDIATE ACTIONS REQUIRED:
+1. Evacuate the building immediately
+2. Call emergency services (Fire Department)
+3. Do not use elevators
+4. Help others evacuate if safe to do so
+
+This is an automated alert from SmartAlert System.
+Time: 2026-03-23 19:23:23
+
+Stay safe!
+        
+================================================================================
+
+================================================================================
+ALERT TYPE: FIRE
+FROM: sharanyagummadavelli@gmail.com
+TO: venkatajahnavi07@gmail.com
+TIMESTAMP: 2026-03-23 19:29:08
+SUBJECT: 🔥🔥🔥 FIRE EMERGENCY - SmartAlert
+MESSAGE:
+
+🔥🔥🔥 FIRE EMERGENCY ALERT 🔥🔥🔥
+
+ALERT TYPE: FIRE DETECTED
+
+A fire has been detected by the SmartAlert monitoring system.
+
+IMMEDIATE ACTIONS REQUIRED:
+1. Evacuate the building immediately
+2. Call emergency services (Fire Department)
+3. Do not use elevators
+4. Help others evacuate if safe to do so
+
+This is an automated alert from SmartAlert System.
+Time: 2026-03-23 19:29:08
+
+Stay safe!
+        
+================================================================================
+
+================================================================================
+ALERT TYPE: FIRE
+FROM: sharanyagummadavelli@gmail.com
+TO: venkatajahnavi07@gmail.com
+TIMESTAMP: 2026-03-23 19:41:01
+SUBJECT: 🔥🔥🔥 FIRE EMERGENCY - SmartAlert
+MESSAGE:
+
+🔥🔥🔥 FIRE EMERGENCY ALERT 🔥🔥🔥
+
+ALERT TYPE: FIRE DETECTED
+
+A fire has been detected by the SmartAlert monitoring system.
+
+IMMEDIATE ACTIONS REQUIRED:
+1. Evacuate the building immediately
+2. Call emergency services (Fire Department)
+3. Do not use elevators
+4. Help others evacuate if safe to do so
+
+This is an automated alert from SmartAlert System.
+Time: 2026-03-23 19:41:01
+
+Stay safe!
+        
+================================================================================
+
+================================================================================
+ALERT TYPE: FIRE
+FROM: sharanyagummadavelli@gmail.com
+TO: venkatajahnavi07@gmail.com
+TIMESTAMP: 2026-03-23 19:45:19
+SUBJECT: 🔥🔥🔥 FIRE EMERGENCY - SmartAlert
+MESSAGE:
+
+🔥🔥🔥 FIRE EMERGENCY ALERT 🔥🔥🔥
+
+ALERT TYPE: FIRE DETECTED
+
+A fire has been detected by the SmartAlert monitoring system.
+
+IMMEDIATE ACTIONS REQUIRED:
+1. Evacuate the building immediately
+2. Call emergency services (Fire Department)
+3. Do not use elevators
+4. Help others evacuate if safe to do so
+
+This is an automated alert from SmartAlert System.
+Time: 2026-03-23 19:45:19
+
+Stay safe!
+        
+================================================================================
+
+================================================================================
+ALERT TYPE: FALL
+FROM: sharanyagummadavelli@gmail.com
+TO: venkatajahnavi07@gmail.com
+TIMESTAMP: 2026-03-23 19:46:39
+SUBJECT: ⬇️ FALL DETECTED - SmartAlert
+MESSAGE:
+
+⬇️⬇️⬇️ FALL DETECTION ALERT ⬇️⬇️⬇️
+
+ALERT TYPE: FALL DETECTED
+
+A person has fallen and may need immediate assistance.
+
+IMMEDIATE ACTIONS REQUIRED:
+1. Check on the person immediately
+2. Call for medical help if needed
+3. Do not move the person if injury is suspected
+4. Keep the person calm and comfortable
+
+This is an automated alert from SmartAlert System.
+Time: 2026-03-23 19:46:39
+
+Please respond quickly!
+        
+================================================================================
+
+================================================================================
+ALERT TYPE: FALL
+FROM: sharanyagummadavelli@gmail.com
+TO: venkatajahnavi07@gmail.com
+TIMESTAMP: 2026-03-23 19:56:27
+SUBJECT: ⬇️ FALL DETECTED - SmartAlert
+MESSAGE:
+
+⬇️⬇️⬇️ FALL DETECTION ALERT ⬇️⬇️⬇️
+
+ALERT TYPE: FALL DETECTED
+
+A person has fallen and may need immediate assistance.
+
+IMMEDIATE ACTIONS REQUIRED:
+1. Check on the person immediately
+2. Call for medical help if needed
+3. Do not move the person if injury is suspected
+4. Keep the person calm and comfortable
+
+This is an automated alert from SmartAlert System.
+Time: 2026-03-23 19:56:27
+
+Please respond quickly!
+        
+================================================================================
+
+================================================================================
+ALERT TYPE: FIRE
+FROM: sharanyagummadavelli@gmail.com
+TO: venkatajahnavi07@gmail.com
+TIMESTAMP: 2026-03-23 20:01:49
+SUBJECT: 🔥🔥🔥 FIRE EMERGENCY - SmartAlert
+MESSAGE:
+
+🔥🔥🔥 FIRE EMERGENCY ALERT 🔥🔥🔥
+
+ALERT TYPE: FIRE DETECTED
+
+A fire has been detected by the SmartAlert monitoring system.
+
+IMMEDIATE ACTIONS REQUIRED:
+1. Evacuate the building immediately
+2. Call emergency services (Fire Department)
+3. Do not use elevators
+4. Help others evacuate if safe to do so
+
+This is an automated alert from SmartAlert System.
+Time: 2026-03-23 20:01:49
+
+Stay safe!
+        
+================================================================================
+
+================================================================================
+ALERT TYPE: FIRE
+FROM: sharanyagummadavelli@gmail.com
+TO: venkatajahnavi07@gmail.com
+TIMESTAMP: 2026-03-23 21:00:33
+SUBJECT: 🔥🔥🔥 FIRE EMERGENCY - SmartAlert
+MESSAGE:
+
+🔥🔥🔥 FIRE EMERGENCY ALERT 🔥🔥🔥
+
+ALERT TYPE: FIRE DETECTED
+
+A fire has been detected by the SmartAlert monitoring system.
+
+IMMEDIATE ACTIONS REQUIRED:
+1. Evacuate the building immediately
+2. Call emergency services (Fire Department)
+3. Do not use elevators
+4. Help others evacuate if safe to do so
+
+This is an automated alert from SmartAlert System.
+Time: 2026-03-23 21:00:33
+
+Stay safe!
+        
+================================================================================
+
+================================================================================
+ALERT TYPE: FIRE
+FROM: sharanyagummadavelli@gmail.com
+TO: venkatajahnavi07@gmail.com
+TIMESTAMP: 2026-03-25 18:03:46
+SUBJECT: 🔥🔥🔥 FIRE EMERGENCY - SmartAlert
+MESSAGE:
+
+🔥🔥🔥 FIRE EMERGENCY ALERT 🔥🔥🔥
+
+ALERT TYPE: FIRE DETECTED
+
+A fire has been detected by the SmartAlert monitoring system.
+
+IMMEDIATE ACTIONS REQUIRED:
+1. Evacuate the building immediately
+2. Call emergency services (Fire Department)
+3. Do not use elevators
+4. Help others evacuate if safe to do so
+
+This is an automated alert from SmartAlert System.
+Time: 2026-03-25 18:03:46
+
+Stay safe!
+        
+================================================================================
+
+================================================================================
+ALERT TYPE: FALL
+FROM: sharanyagummadavelli@gmail.com
+TO: venkatajahnavi07@gmail.com
+TIMESTAMP: 2026-03-25 18:04:43
+SUBJECT: ⬇️ FALL DETECTED - SmartAlert
+MESSAGE:
+
+⬇️⬇️⬇️ FALL DETECTION ALERT ⬇️⬇️⬇️
+
+ALERT TYPE: FALL DETECTED
+
+A person has fallen and may need immediate assistance.
+
+IMMEDIATE ACTIONS REQUIRED:
+1. Check on the person immediately
+2. Call for medical help if needed
+3. Do not move the person if injury is suspected
+4. Keep the person calm and comfortable
+
+This is an automated alert from SmartAlert System.
+Time: 2026-03-25 18:04:43
+
+Please respond quickly!
+        
+================================================================================

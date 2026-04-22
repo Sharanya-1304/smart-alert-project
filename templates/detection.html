@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unified Detection - Smart Alert</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 30px 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-header i {
+            font-size: 28px;
+            color: #667eea;
+        }
+
+        .sidebar-header span {
+            font-weight: 700;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .sidebar-nav {
+            padding: 20px 0;
+        }
+
+        .nav-item {
+            padding: 15px 20px;
+            color: #666;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item i {
+            font-size: 20px;
+            width: 24px;
+        }
+
+        .nav-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            border-left-color: #667eea;
+        }
+
+        .nav-item.active {
+            background: rgba(102, 126, 234, 0.15);
+            color: #667eea;
+            border-left-color: #667eea;
+            font-weight: 600;
+        }
+
+        .sidebar-footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            padding: 0 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding-top: 20px;
+        }
+
+        .logout-btn {
+            width: 100%;
+            padding: 12px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .logout-btn:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            margin-left: 280px;
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-header h1 {
+            margin: 0 0 10px 0;
+            font-size: 32px;
+            color: #333;
+        }
+
+        .page-header p {
+            margin: 0;
+            color: #999;
+            font-size: 16px;
+        }
+
+        .upload-section {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .upload-area {
+            border: 3px dashed #667eea;
+            border-radius: 15px;
+            padding: 60px 30px;
+            text-align: center;
+            background: rgba(102, 126, 234, 0.02);
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .upload-area:hover {
+            border-color: #764ba2;
+            background: rgba(102, 126, 234, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .upload-area.dragover {
+            border-color: #4caf50;
+            background: rgba(76, 175, 80, 0.05);
+            border-style: solid;
+        }
+
+        .upload-icon {
+            font-size: 80px;
+            color: #667eea;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .upload-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .upload-subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .upload-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .feature-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .feature-badge i {
+            font-size: 16px;
+        }
+
+        #videoInput {
+            display: none;
+        }
+
+        .select-btn {
+            padding: 18px 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            margin-top: 20px;
+        }
+
+        .select-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .file-info {
+            display: none;
+            margin-top: 30px;
+            padding: 25px;
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 12px;
+            border: 2px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .file-info.show {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .file-details {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .file-icon {
+            font-size: 48px;
+            color: #4caf50;
+        }
+
+        .file-text h4 {
+            margin: 0 0 5px 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .file-text p {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .process-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #4caf50, #66bb6a);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+        }
+
+        .process-btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(76, 175, 80, 0.4);
+        }
+
+        .process-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .processing-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .processing-modal.show {
+            display: flex;
+        }
+
+        .processing-content {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .spinner {
+            width: 80px;
+            height: 80px;
+            border: 6px solid rgba(102, 126, 234, 0.2);
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 30px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .processing-content h2 {
+            margin: 0 0 15px 0;
+            font-size: 28px;
+            color: #333;
+        }
+
+        .processing-content p {
+            margin: 0;
+            color: #666;
+            font-size: 16px;
+        }
+
+        .status-message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .status-message.show {
+            display: block;
+        }
+
+        .status-message.success {
+            background: rgba(76, 175, 80, 0.1);
+            color: #4caf50;
+            border: 2px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .status-message.error {
+            background: rgba(244, 67, 54, 0.1);
+            color: #f44336;
+            border: 2px solid rgba(244, 67, 54, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .upload-section {
+                padding: 30px 20px;
+            }
+
+            .upload-area {
+                padding: 40px 20px;
+            }
+
+            .upload-icon {
+                font-size: 60px;
+            }
+
+            .upload-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-shield-alt"></i>
+            <span>Smart Alert</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="/dashboard" class="nav-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="/detection" class="nav-item active">
+                <i class="fas fa-camera"></i>
+                <span>Start Detection</span>
+            </a>
+            <a href="/history" class="nav-item">
+                <i class="fas fa-history"></i>
+                <span>Alert History</span>
+            </a>
+            <a href="/settings" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="/logout" class="logout-btn">Logout</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="page-header">
+            <h1>🎯 Unified Detection System</h1>
+            <p>Upload any video for automatic fire, fall, and emergency detection with AI-powered analysis</p>
+        </div>
+
+        <!-- Upload Section -->
+        <div class="upload-section">
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <h2 class="upload-title">Drop Your Video Here</h2>
+                <p class="upload-subtitle">or click to browse and select a video file</p>
+
+                <div class="upload-features">
+                    <div class="feature-badge">
+                        <i class="fas fa-fire"></i>
+                        Fire Detection
+                    </div>
+                    <div class="feature-badge">
+                        <i class="fas fa-person-falling"></i>
+                        Fall Detection
+                    </div>
+                    <div class="feature-badge">
+                        <i class="fas fa-robot"></i>
+                        Auto Recognition
+                    </div>
+                    <div class="feature-badge">
+                        <i class="fas fa-bell"></i>
+                        Instant Alerts
+                    </div>
+                </div>
+
+                <button class="select-btn" onclick="document.getElementById('videoInput').click()">
+                    <i class="fas fa-folder-open"></i> Select Video File
+                </button>
+
+                <input type="file" id="videoInput" accept=".mp4,.avi,.mov,.mkv,.flv,.webm" />
+
+                <p style="margin-top: 20px; font-size: 13px; color: #999;">
+                    Supported formats: MP4, AVI, MOV, MKV, FLV, WEBM • Max size: 500MB
+                </p>
+            </div>
+
+            <!-- File Info (shown after file selection) -->
+            <div class="file-info" id="fileInfo">
+                <div class="file-details">
+                    <div class="file-icon">
+                        <i class="fas fa-file-video"></i>
+                    </div>
+                    <div class="file-text">
+                        <h4 id="fileName">video.mp4</h4>
+                        <p id="fileSize">0 MB</p>
+                    </div>
+                </div>
+                <button class="process-btn" id="processBtn">
+                    <i class="fas fa-play-circle"></i> Start Processing & Analysis
+                </button>
+            </div>
+
+            <!-- Status Message -->
+            <div class="status-message" id="statusMessage"></div>
+        </div>
+    </div>
+
+    <!-- Processing Modal -->
+    <div class="processing-modal" id="processingModal">
+        <div class="processing-content">
+            <div class="spinner"></div>
+            <h2>Processing Your Video...</h2>
+            <p>Our AI is analyzing the video for fires, falls, and other emergencies. This may take a few moments.</p>
+        </div>
+    </div>
+
+    <script>
+        let selectedFile = null;
+        let uploadedVideoId = null;
+
+        const videoInput = document.getElementById('videoInput');
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInfo = document.getElementById('fileInfo');
+        const fileName = document.getElementById('fileName');
+        const fileSize = document.getElementById('fileSize');
+        const processBtn = document.getElementById('processBtn');
+        const processingModal = document.getElementById('processingModal');
+        const statusMessage = document.getElementById('statusMessage');
+
+        // File input change
+        videoInput.addEventListener('change', handleFileSelect);
+
+        // Drag and drop
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                videoInput.files = files;
+                handleFileSelect();
+            }
+        });
+
+        function handleFileSelect() {
+            if (videoInput.files.length === 0) return;
+
+            selectedFile = videoInput.files[0];
+
+            // Validate file size
+            const maxSize = 500 * 1024 * 1024; // 500MB
+            if (selectedFile.size > maxSize) {
+                showStatus('File size exceeds 500MB limit', 'error');
+                return;
+            }
+
+            // Update UI
+            fileName.textContent = selectedFile.name;
+            fileSize.textContent = (selectedFile.size / (1024 * 1024)).toFixed(2) + ' MB';
+            fileInfo.classList.add('show');
+
+            // Auto-upload
+            uploadFile();
+        }
+
+        async function uploadFile() {
+            const formData = new FormData();
+            formData.append('video', selectedFile);
+
+            processBtn.disabled = true;
+            showStatus('Uploading video...', 'success');
+
+            try {
+                const response = await fetch('/api/upload-video', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    uploadedVideoId = data.video_id;
+                    showStatus('Upload complete! Ready to process.', 'success');
+                    processBtn.disabled = false;
+                } else {
+                    showStatus('Upload failed: ' + data.message, 'error');
+                }
+            } catch (error) {
+                showStatus('Upload error: ' + error.message, 'error');
+            }
+        }
+
+        processBtn.addEventListener('click', async () => {
+            if (!uploadedVideoId) {
+                showStatus('No video uploaded yet', 'error');
+                return;
+            }
+
+            processingModal.classList.add('show');
+
+            try {
+                // Wait for processing to complete (2-3 seconds)
+                const response = await fetch(`/api/process-video/${uploadedVideoId}`, {
+                    method: 'POST'
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Processing done! Redirect INSTANTLY
+                    window.location.href = `/result/${uploadedVideoId}`;
+                } else {
+                    processingModal.classList.remove('show');
+                    showStatus('Processing failed: ' + data.message, 'error');
+                }
+            } catch (error) {
+                processingModal.classList.remove('show');
+                showStatus('Processing error: ' + error.message, 'error');
+            }
+        });
+
+        function showStatus(message, type) {
+            statusMessage.textContent = message;
+            statusMessage.className = 'status-message show ' + type;
+
+            setTimeout(() => {
+                statusMessage.classList.remove('show');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

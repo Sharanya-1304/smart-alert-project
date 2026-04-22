@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management - Smart Alert Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: #1a1a2e; min-height: 100vh; color: #fff; }
+
+        .admin-sidebar {
+            position: fixed; left: 0; top: 0; width: 260px; height: 100vh;
+            background: linear-gradient(180deg, #16213e 0%, #0f3460 100%);
+            box-shadow: 4px 0 15px rgba(0, 0, 0, 0.3); z-index: 100;
+        }
+        .admin-logo { padding: 25px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; gap: 12px; }
+        .admin-logo i { font-size: 32px; color: #e94560; }
+        .admin-logo span { font-size: 20px; font-weight: 700; color: #fff; }
+        .admin-logo small { display: block; font-size: 11px; color: #94a3b8; font-weight: 400; }
+        .admin-nav { padding: 20px 0; }
+        .nav-section { padding: 10px 20px; font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 1px; margin-top: 10px; }
+        .admin-nav a { display: flex; align-items: center; gap: 12px; padding: 14px 25px; color: #94a3b8; text-decoration: none; transition: all 0.3s; border-left: 3px solid transparent; }
+        .admin-nav a:hover, .admin-nav a.active { background: rgba(233, 69, 96, 0.1); color: #e94560; border-left-color: #e94560; }
+        .admin-nav a i { width: 20px; font-size: 18px; }
+
+        .main-content { margin-left: 260px; padding: 30px; min-height: 100vh; }
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .page-title h1 { font-size: 28px; font-weight: 700; color: #fff; }
+        .page-title p { color: #64748b; font-size: 14px; }
+
+        .btn { padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; }
+        .btn-primary { background: linear-gradient(135deg, #e94560, #ff6b6b); color: white; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(233, 69, 96, 0.4); }
+        .btn-secondary { background: rgba(255, 255, 255, 0.1); color: #fff; }
+        .btn-success { background: #22c55e; color: white; }
+        .btn-danger { background: #ef4444; color: white; }
+        .btn-sm { padding: 6px 12px; font-size: 12px; }
+
+        .card { background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 25px; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .card-title { font-size: 18px; font-weight: 600; color: #fff; display: flex; align-items: center; gap: 10px; }
+        .card-title i { color: #e94560; }
+
+        .search-bar { display: flex; gap: 15px; margin-bottom: 20px; }
+        .search-input { flex: 1; padding: 12px 15px; border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.05); border-radius: 8px; color: #fff; font-size: 14px; }
+        .search-input::placeholder { color: #64748b; }
+        .search-input:focus { outline: none; border-color: #e94560; }
+
+        .table { width: 100%; border-collapse: collapse; }
+        .table th, .table td { padding: 15px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .table th { color: #64748b; font-weight: 500; font-size: 12px; text-transform: uppercase; background: rgba(0, 0, 0, 0.2); }
+        .table td { color: #fff; font-size: 14px; }
+        .table tr:hover { background: rgba(233, 69, 96, 0.05); }
+
+        .badge { padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+        .badge-admin { background: rgba(233, 69, 96, 0.2); color: #e94560; }
+        .badge-user { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
+        .badge-active { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+        .badge-inactive { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+
+        .user-info { display: flex; align-items: center; gap: 12px; }
+        .user-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #e94560, #ff6b6b); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; }
+        .user-details small { color: #64748b; display: block; }
+
+        .action-btns { display: flex; gap: 8px; }
+
+        /* Modal */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 1000; align-items: center; justify-content: center; }
+        .modal.show { display: flex; }
+        .modal-content { background: #1e293b; border-radius: 15px; padding: 30px; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .modal-title { font-size: 20px; font-weight: 600; }
+        .modal-close { background: none; border: none; color: #64748b; font-size: 24px; cursor: pointer; }
+        .modal-close:hover { color: #fff; }
+
+        .form-group { margin-bottom: 20px; }
+        .form-label { display: block; margin-bottom: 8px; color: #94a3b8; font-size: 14px; }
+        .form-input { width: 100%; padding: 12px 15px; border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.05); border-radius: 8px; color: #fff; font-size: 14px; }
+        .form-input:focus { outline: none; border-color: #e94560; }
+        .form-select { width: 100%; padding: 12px 15px; border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.05); border-radius: 8px; color: #fff; font-size: 14px; }
+        .show-password-row { display: flex; align-items: center; gap: 8px; margin-top: -8px; color: #94a3b8; font-size: 13px; }
+        .show-password-row input { width: 15px; height: 15px; margin: 0; padding: 0; }
+
+        .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 25px; }
+        .stat-mini { background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 15px; text-align: center; }
+        .stat-mini .value { font-size: 24px; font-weight: 700; color: #e94560; }
+        .stat-mini .label { font-size: 12px; color: #64748b; }
+
+        .alert { padding: 15px; border-radius: 8px; margin-bottom: 20px; display: none; }
+        .alert.show { display: block; }
+        .alert-success { background: rgba(34, 197, 94, 0.2); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.3); }
+        .alert-error { background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+    </style>
+</head>
+<body>
+    <!-- Admin Sidebar -->
+    <div class="admin-sidebar">
+        <div class="admin-logo">
+            <i class="fas fa-shield-alt"></i>
+            <div><span>Smart Alert</span><small>Admin Panel</small></div>
+        </div>
+        <nav class="admin-nav">
+            <div class="nav-section">Main</div>
+            <a href="/admin"><i class="fas fa-chart-pie"></i><span>Dashboard</span></a>
+            <a href="/admin/users" class="active"><i class="fas fa-users"></i><span>User Management</span></a>
+            <a href="/admin/alerts"><i class="fas fa-bell"></i><span>Alerts</span></a>
+            <div class="nav-section">Analytics</div>
+            <a href="/admin/analytics"><i class="fas fa-chart-line"></i><span>Analytics</span></a>
+            <a href="/admin/activity"><i class="fas fa-history"></i><span>Activity Log</span></a>
+            <div class="nav-section">System</div>
+            <a href="/dashboard"><i class="fas fa-home"></i><span>Back to App</span></a>
+            <a href="/logout"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="top-bar">
+            <div class="page-title">
+                <h1>User Management</h1>
+                <p>Manage all users, roles, and permissions</p>
+            </div>
+            <button class="btn btn-primary" onclick="showAddUserModal()">
+                <i class="fas fa-user-plus"></i> Add New User
+            </button>
+        </div>
+
+        <!-- Alert Message -->
+        <div class="alert" id="alertMessage"></div>
+
+        <!-- Stats -->
+        <div class="stats-row">
+            <div class="stat-mini">
+                <div class="value" id="statTotal">0</div>
+                <div class="label">Total Users</div>
+            </div>
+            <div class="stat-mini">
+                <div class="value" id="statActive">0</div>
+                <div class="label">Active Users</div>
+            </div>
+            <div class="stat-mini">
+                <div class="value" id="statAdmins">0</div>
+                <div class="label">Admins</div>
+            </div>
+            <div class="stat-mini">
+                <div class="value" id="statOnline">0</div>
+                <div class="label">Online Today</div>
+            </div>
+        </div>
+
+        <!-- Users Table -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title"><i class="fas fa-users"></i> All Users</h3>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search users by name or email..." onkeyup="filterUsers()">
+                <select class="form-select" style="width: 150px;" id="roleFilter" onchange="filterUsers()">
+                    <option value="">All Roles</option>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                </select>
+                <select class="form-select" style="width: 150px;" id="statusFilter" onchange="filterUsers()">
+                    <option value="">All Status</option>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                </select>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Alerts</th>
+                        <th>Videos</th>
+                        <th>Last Login</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="usersTable">
+                    <tr><td colspan="7" style="text-align: center; color: #64748b;">Loading users...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Add User Modal -->
+    <div class="modal" id="addUserModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Add New User</h3>
+                <button class="modal-close" onclick="closeModal('addUserModal')">&times;</button>
+            </div>
+            <form onsubmit="createUser(event)">
+                <div class="form-group">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-input" id="newUsername" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" id="newEmail" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="newPassword" required>
+                </div>
+                <label class="show-password-row" for="showNewPassword">
+                    <input type="checkbox" id="showNewPassword">
+                    Show Password
+                </label>
+                <div class="form-group">
+                    <label class="form-label">Role</label>
+                    <select class="form-select" id="newRole">
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-user-plus"></i> Create User
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit User Modal -->
+    <div class="modal" id="editUserModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">User Details</h3>
+                <button class="modal-close" onclick="closeModal('editUserModal')">&times;</button>
+            </div>
+            <div id="userDetails">Loading...</div>
+        </div>
+    </div>
+
+    <script>
+        let allUsers = [];
+        const newPasswordInput = document.getElementById('newPassword');
+        const showNewPassword = document.getElementById('showNewPassword');
+
+        showNewPassword.addEventListener('change', function() {
+            newPasswordInput.type = this.checked ? 'text' : 'password';
+        });
+
+        async function loadUsers() {
+            try {
+                const response = await fetch('/api/admin/users');
+                allUsers = await response.json();
+                renderUsers(allUsers);
+                updateStats();
+            } catch (error) {
+                console.error('Error loading users:', error);
+            }
+        }
+
+        function renderUsers(users) {
+            const tbody = document.getElementById('usersTable');
+            tbody.innerHTML = '';
+
+            if (users.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #64748b;">No users found</td></tr>';
+                return;
+            }
+
+            users.forEach(user => {
+                const initials = user.username.substring(0, 2).toUpperCase();
+                tbody.innerHTML += `
+                    <tr>
+                        <td>
+                            <div class="user-info">
+                                <div class="user-avatar">${initials}</div>
+                                <div class="user-details">
+                                    <div>${user.username}</div>
+                                    <small>${user.email}</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="badge badge-${user.role}">${user.role}</span></td>
+                        <td><span class="badge badge-${user.is_active ? 'active' : 'inactive'}">${user.is_active ? 'Active' : 'Inactive'}</span></td>
+                        <td>${user.alert_count}</td>
+                        <td>${user.video_count}</td>
+                        <td style="color: #64748b;">${user.last_login}</td>
+                        <td>
+                            <div class="action-btns">
+                                <button class="btn btn-secondary btn-sm" onclick="viewUser(${user.id})">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn ${user.is_active ? 'btn-danger' : 'btn-success'} btn-sm" onclick="toggleStatus(${user.id})">
+                                    <i class="fas fa-${user.is_active ? 'ban' : 'check'}"></i>
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="changeRole(${user.id}, '${user.role}')">
+                                    <i class="fas fa-user-cog"></i>
+                                </button>
+                                <button class="btn btn-danger btn-sm" onclick="deleteUser(${user.id}, '${user.username}')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function updateStats() {
+            document.getElementById('statTotal').textContent = allUsers.length;
+            document.getElementById('statActive').textContent = allUsers.filter(u => u.is_active).length;
+            document.getElementById('statAdmins').textContent = allUsers.filter(u => u.role === 'admin').length;
+            document.getElementById('statOnline').textContent = allUsers.filter(u => u.last_login !== 'Never').length;
+        }
+
+        function filterUsers() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const roleFilter = document.getElementById('roleFilter').value;
+            const statusFilter = document.getElementById('statusFilter').value;
+
+            const filtered = allUsers.filter(user => {
+                const matchSearch = user.username.toLowerCase().includes(search) || user.email.toLowerCase().includes(search);
+                const matchRole = !roleFilter || user.role === roleFilter;
+                const matchStatus = !statusFilter || (statusFilter === 'active' ? user.is_active : !user.is_active);
+                return matchSearch && matchRole && matchStatus;
+            });
+
+            renderUsers(filtered);
+        }
+
+        function showAddUserModal() {
+            document.getElementById('addUserModal').classList.add('show');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('show');
+        }
+
+        async function createUser(event) {
+            event.preventDefault();
+            const data = {
+                username: document.getElementById('newUsername').value,
+                email: document.getElementById('newEmail').value,
+                password: document.getElementById('newPassword').value,
+                role: document.getElementById('newRole').value
+            };
+
+            try {
+                const response = await fetch('/api/admin/users/create', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showAlert('User created successfully!', 'success');
+                    closeModal('addUserModal');
+                    loadUsers();
+                    document.getElementById('newUsername').value = '';
+                    document.getElementById('newEmail').value = '';
+                    newPasswordInput.value = '';
+                    showNewPassword.checked = false;
+                    newPasswordInput.type = 'password';
+                } else {
+                    showAlert(result.message, 'error');
+                }
+            } catch (error) {
+                showAlert('Error creating user', 'error');
+            }
+        }
+
+        async function viewUser(userId) {
+            try {
+                const response = await fetch(`/api/admin/users/${userId}`);
+                const user = await response.json();
+
+                document.getElementById('userDetails').innerHTML = `
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                            <div class="user-avatar" style="width: 60px; height: 60px; font-size: 20px;">${user.username.substring(0, 2).toUpperCase()}</div>
+                            <div>
+                                <h2 style="margin: 0;">${user.username}</h2>
+                                <span class="badge badge-${user.role}">${user.role}</span>
+                                <span class="badge badge-${user.is_active ? 'active' : 'inactive'}">${user.is_active ? 'Active' : 'Inactive'}</span>
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div><strong style="color: #64748b;">Email:</strong><br>${user.email}</div>
+                            <div><strong style="color: #64748b;">Caregiver Email:</strong><br>${user.caregiver_email || 'Not set'}</div>
+                            <div><strong style="color: #64748b;">Created:</strong><br>${user.created_at}</div>
+                            <div><strong style="color: #64748b;">Last Login:</strong><br>${user.last_login || 'Never'}</div>
+                        </div>
+                    </div>
+                    <h4 style="margin-bottom: 10px; color: #e94560;">Recent Alerts</h4>
+                    <div style="margin-bottom: 20px;">
+                        ${user.alerts.length ? user.alerts.map(a => `<span class="badge badge-${a.type === 'fire' ? 'admin' : 'user'}" style="margin-right: 5px;">${a.type} - ${a.date}</span>`).join('') : '<span style="color: #64748b;">No alerts</span>'}
+                    </div>
+                    <h4 style="margin-bottom: 10px; color: #e94560;">Recent Activity</h4>
+                    <div>
+                        ${user.activities.length ? user.activities.map(a => `<div style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05);"><strong>${a.type}</strong>: ${a.desc} <small style="color: #64748b;">(${a.date})</small></div>`).join('') : '<span style="color: #64748b;">No activity</span>'}
+                    </div>
+                `;
+                document.getElementById('editUserModal').classList.add('show');
+            } catch (error) {
+                showAlert('Error loading user details', 'error');
+            }
+        }
+
+        async function toggleStatus(userId) {
+            if (!confirm('Are you sure you want to change this user\'s status?')) return;
+
+            try {
+                const response = await fetch(`/api/admin/users/${userId}/toggle-status`, { method: 'POST' });
+                const result = await response.json();
+
+                if (result.success) {
+                    showAlert(result.message, 'success');
+                    loadUsers();
+                } else {
+                    showAlert(result.message, 'error');
+                }
+            } catch (error) {
+                showAlert('Error changing status', 'error');
+            }
+        }
+
+        async function changeRole(userId, currentRole) {
+            const newRole = currentRole === 'admin' ? 'user' : 'admin';
+            if (!confirm(`Change this user's role to ${newRole}?`)) return;
+
+            try {
+                const response = await fetch(`/api/admin/users/${userId}/change-role`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ role: newRole })
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    showAlert(result.message, 'success');
+                    loadUsers();
+                } else {
+                    showAlert(result.message, 'error');
+                }
+            } catch (error) {
+                showAlert('Error changing role', 'error');
+            }
+        }
+
+        async function deleteUser(userId, username) {
+            if (!confirm(`Are you sure you want to DELETE user "${username}"? This action cannot be undone!`)) return;
+
+            try {
+                const response = await fetch(`/api/admin/users/${userId}/delete`, { method: 'DELETE' });
+                const result = await response.json();
+
+                if (result.success) {
+                    showAlert(result.message, 'success');
+                    loadUsers();
+                } else {
+                    showAlert(result.message, 'error');
+                }
+            } catch (error) {
+                showAlert('Error deleting user', 'error');
+            }
+        }
+
+        function showAlert(message, type) {
+            const alert = document.getElementById('alertMessage');
+            alert.textContent = message;
+            alert.className = `alert show alert-${type}`;
+            setTimeout(() => alert.classList.remove('show'), 5000);
+        }
+
+        document.addEventListener('DOMContentLoaded', loadUsers);
+    </script>
+</body>
+</html>

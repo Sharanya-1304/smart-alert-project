@@ -1,0 +1,10 @@
+2026-03-23 19:23:26 | 🔥 FIRE ALERT | FIRE ALERT: Fire detected at monitored location. Evacuate immediately!
+2026-03-23 19:29:10 | 🔥 FIRE ALERT | FIRE ALERT: Fire detected at monitored location. Evacuate immediately!
+2026-03-23 19:41:04 | 🔥 FIRE ALERT | FIRE ALERT: Fire detected at monitored location. Evacuate immediately!
+2026-03-23 19:45:23 | 🔥 FIRE ALERT | FIRE ALERT: Fire detected at monitored location. Evacuate immediately!
+2026-03-23 19:46:44 | ⬇️ FALL ALERT | FALL ALERT: A person has fallen at monitored location. Provide immediate assistance!
+2026-03-23 19:56:31 | ⬇️ FALL ALERT | FALL ALERT: A person has fallen at monitored location. Provide immediate assistance!
+2026-03-23 20:01:53 | 🔥 FIRE ALERT | FIRE ALERT: Fire detected at monitored location. Evacuate immediately!
+2026-03-23 21:00:37 | 🔥 FIRE ALERT | FIRE ALERT: Fire detected at monitored location. Evacuate immediately!
+2026-03-25 18:03:50 | 🔥 FIRE ALERT | FIRE ALERT: Fire detected at monitored location. Evacuate immediately!
+2026-03-25 18:04:48 | ⬇️ FALL ALERT | FALL ALERT: A person has fallen at monitored location. Provide immediate assistance!

@@ -1,0 +1,414 @@
+[2026-03-08 15:49:18] [CRITICAL] Fall detected
+[2026-03-08 15:49:18] [CRITICAL] Fall detected
+[2026-03-08 15:49:18] [CRITICAL] Fall detected
+[2026-03-08 15:49:19] [CRITICAL] Fall detected
+[2026-03-08 15:49:19] [CRITICAL] Fall detected
+[2026-03-08 15:49:19] [CRITICAL] Fall detected
+[2026-03-08 15:49:19] [CRITICAL] Fall detected
+[2026-03-08 15:49:19] [CRITICAL] Fall detected
+[2026-03-08 15:49:19] [CRITICAL] Fall detected
+[2026-03-08 15:49:20] [CRITICAL] Fall detected
+[2026-03-08 15:49:20] [CRITICAL] Fall detected
+[2026-03-08 15:49:20] [CRITICAL] Fall detected
+[2026-03-08 15:49:20] [CRITICAL] Fall detected
+[2026-03-08 15:49:24] [CRITICAL] Fall detected
+[2026-03-08 15:49:25] [CRITICAL] Fall detected
+[2026-03-08 15:49:25] [CRITICAL] Fall detected
+[2026-03-08 15:49:25] [CRITICAL] Fall detected
+[2026-03-08 15:49:25] [CRITICAL] Fall detected
+[2026-03-08 15:49:25] [CRITICAL] Fall detected
+[2026-03-08 15:49:26] [CRITICAL] Fall detected
+[2026-03-08 15:49:31] [CRITICAL] Fall detected
+[2026-03-08 15:49:31] [CRITICAL] Fall detected
+[2026-03-08 15:49:31] [CRITICAL] Fall detected
+[2026-03-08 15:49:36] [CRITICAL] Fall detected
+[2026-03-08 15:49:36] [CRITICAL] Fall detected
+[2026-03-08 15:49:36] [CRITICAL] Fall detected
+[2026-03-08 15:49:36] [CRITICAL] Fall detected
+[2026-03-08 15:49:36] [CRITICAL] Fall detected
+[2026-03-08 15:49:36] [CRITICAL] Fall detected
+[2026-03-08 15:49:37] [CRITICAL] Fall detected
+[2026-03-08 15:49:44] [CRITICAL] Fall detected
+[2026-03-08 15:49:44] [CRITICAL] Fall detected
+[2026-03-08 15:49:44] [CRITICAL] Fall detected
+[2026-03-08 15:49:45] [CRITICAL] Fall detected
+[2026-03-08 15:49:50] [CRITICAL] Fall detected
+[2026-03-08 15:54:23] [CRITICAL] Fire detected
+[2026-03-08 15:54:32] [CRITICAL] Fire detected
+[2026-03-08 15:54:40] [CRITICAL] Fire detected
+[2026-03-08 15:54:48] [CRITICAL] Fire detected
+[2026-03-08 15:55:31] [CRITICAL] Fall detected
+[2026-03-08 15:55:31] [CRITICAL] Fall detected
+[2026-03-08 15:55:31] [CRITICAL] Fall detected
+[2026-03-08 15:55:32] [CRITICAL] Fall detected
+[2026-03-08 15:55:32] [CRITICAL] Fall detected
+[2026-03-08 15:55:32] [CRITICAL] Fall detected
+[2026-03-08 15:55:32] [CRITICAL] Fall detected
+[2026-03-08 15:55:32] [CRITICAL] Fall detected
+[2026-03-08 15:55:32] [CRITICAL] Fall detected
+[2026-03-08 15:55:33] [CRITICAL] Fall detected
+[2026-03-08 15:55:33] [CRITICAL] Fall detected
+[2026-03-08 15:55:33] [CRITICAL] Fall detected
+[2026-03-08 15:55:34] [CRITICAL] Fall detected
+[2026-03-08 15:55:38] [CRITICAL] Fall detected
+[2026-03-08 15:55:38] [CRITICAL] Fall detected
+[2026-03-08 15:55:38] [CRITICAL] Fall detected
+[2026-03-08 15:55:38] [CRITICAL] Fall detected
+[2026-03-08 15:55:39] [CRITICAL] Fall detected
+[2026-03-08 15:55:39] [CRITICAL] Fall detected
+[2026-03-08 15:55:39] [CRITICAL] Fall detected
+[2026-03-08 15:55:45] [CRITICAL] Fall detected
+[2026-03-08 15:55:45] [CRITICAL] Fall detected
+[2026-03-08 15:55:46] [CRITICAL] Fall detected
+[2026-03-08 15:55:47] [CRITICAL] Fall detected
+[2026-03-08 15:55:47] [CRITICAL] Fall detected
+[2026-03-08 15:55:47] [CRITICAL] Fall detected
+[2026-03-08 15:55:47] [CRITICAL] Fall detected
+[2026-03-08 15:55:48] [CRITICAL] Fall detected
+[2026-03-08 15:55:51] [CRITICAL] Fall detected
+[2026-03-08 15:55:52] [CRITICAL] Fall detected
+[2026-03-08 15:55:59] [CRITICAL] Fall detected
+[2026-03-08 15:55:59] [CRITICAL] Fall detected
+[2026-03-08 15:55:59] [CRITICAL] Fall detected
+[2026-03-08 15:56:00] [CRITICAL] Fall detected
+[2026-03-08 15:56:06] [CRITICAL] Fall detected
+[2026-03-08 15:56:22] [CRITICAL] Fall detected
+[2026-03-08 15:56:24] [CRITICAL] Fall detected
+[2026-03-08 15:56:24] [CRITICAL] Fall detected
+[2026-03-08 16:03:38] [CRITICAL] Fall detected
+[2026-03-08 16:03:38] [CRITICAL] Fall detected
+[2026-03-08 16:03:38] [CRITICAL] Fall detected
+[2026-03-08 16:03:38] [CRITICAL] Fall detected
+[2026-03-08 16:03:39] [CRITICAL] Fall detected
+[2026-03-08 16:03:39] [CRITICAL] Fall detected
+[2026-03-08 16:03:39] [CRITICAL] Fall detected
+[2026-03-08 16:03:39] [CRITICAL] Fall detected
+[2026-03-08 16:03:39] [CRITICAL] Fall detected
+[2026-03-08 16:03:40] [CRITICAL] Fall detected
+[2026-03-08 16:03:40] [CRITICAL] Fall detected
+[2026-03-08 16:03:40] [CRITICAL] Fall detected
+[2026-03-08 16:03:41] [CRITICAL] Fall detected
+[2026-03-08 16:03:45] [CRITICAL] Fall detected
+[2026-03-08 16:03:45] [CRITICAL] Fall detected
+[2026-03-08 16:03:45] [CRITICAL] Fall detected
+[2026-03-08 16:03:45] [CRITICAL] Fall detected
+[2026-03-08 16:03:46] [CRITICAL] Fall detected
+[2026-03-08 16:03:46] [CRITICAL] Fall detected
+[2026-03-08 16:03:46] [CRITICAL] Fall detected
+[2026-03-08 16:03:52] [CRITICAL] Fall detected
+[2026-03-08 16:03:52] [CRITICAL] Fall detected
+[2026-03-08 16:03:52] [CRITICAL] Fall detected
+[2026-03-08 16:03:54] [CRITICAL] Fall detected
+[2026-03-08 16:03:54] [CRITICAL] Fall detected
+[2026-03-08 16:03:54] [CRITICAL] Fall detected
+[2026-03-08 16:03:54] [CRITICAL] Fall detected
+[2026-03-08 16:03:54] [CRITICAL] Fall detected
+[2026-03-08 16:03:58] [CRITICAL] Fall detected
+[2026-03-08 16:03:58] [CRITICAL] Fall detected
+[2026-03-08 16:04:05] [CRITICAL] Fall detected
+[2026-03-08 16:09:15] [CRITICAL] Fall detected
+[2026-03-08 16:09:15] [CRITICAL] Fall detected
+[2026-03-08 16:09:15] [CRITICAL] Fall detected
+[2026-03-08 16:09:16] [CRITICAL] Fall detected
+[2026-03-08 16:09:16] [CRITICAL] Fall detected
+[2026-03-08 16:09:16] [CRITICAL] Fall detected
+[2026-03-08 16:09:16] [CRITICAL] Fall detected
+[2026-03-08 16:09:16] [CRITICAL] Fall detected
+[2026-03-08 16:09:16] [CRITICAL] Fall detected
+[2026-03-08 16:09:17] [CRITICAL] Fall detected
+[2026-03-08 16:09:17] [CRITICAL] Fall detected
+[2026-03-08 16:09:18] [CRITICAL] Fall detected
+[2026-03-08 16:09:18] [CRITICAL] Fall detected
+[2026-03-08 16:09:22] [CRITICAL] Fall detected
+[2026-03-08 16:09:22] [CRITICAL] Fall detected
+[2026-03-08 16:09:22] [CRITICAL] Fall detected
+[2026-03-08 16:09:22] [CRITICAL] Fall detected
+[2026-03-08 16:09:23] [CRITICAL] Fall detected
+[2026-03-08 16:11:26] [CRITICAL] Fall detected
+[2026-03-08 16:11:26] [CRITICAL] Fall detected
+[2026-03-08 16:11:27] [CRITICAL] Fall detected
+[2026-03-08 16:11:27] [CRITICAL] Fall detected
+[2026-03-08 16:11:27] [CRITICAL] Fall detected
+[2026-03-08 16:11:27] [CRITICAL] Fall detected
+[2026-03-08 16:11:27] [CRITICAL] Fall detected
+[2026-03-08 16:11:27] [CRITICAL] Fall detected
+[2026-03-08 16:11:27] [CRITICAL] Fall detected
+[2026-03-08 16:11:28] [CRITICAL] Fall detected
+[2026-03-08 16:11:28] [CRITICAL] Fall detected
+[2026-03-08 16:11:29] [CRITICAL] Fall detected
+[2026-03-08 16:11:29] [CRITICAL] Fall detected
+[2026-03-08 16:11:33] [CRITICAL] Fall detected
+[2026-03-08 16:11:33] [CRITICAL] Fall detected
+[2026-03-08 16:11:34] [CRITICAL] Fall detected
+[2026-03-08 16:11:34] [CRITICAL] Fall detected
+[2026-03-08 16:11:34] [CRITICAL] Fall detected
+[2026-03-08 16:11:34] [CRITICAL] Fall detected
+[2026-03-08 16:11:34] [CRITICAL] Fall detected
+[2026-03-08 16:11:40] [CRITICAL] Fall detected
+[2026-03-08 16:11:41] [CRITICAL] Fall detected
+[2026-03-08 16:11:41] [CRITICAL] Fall detected
+[2026-03-08 16:11:42] [CRITICAL] Fall detected
+[2026-03-08 16:11:42] [CRITICAL] Fall detected
+[2026-03-08 16:11:42] [CRITICAL] Fall detected
+[2026-03-08 16:11:43] [CRITICAL] Fall detected
+[2026-03-08 16:11:43] [CRITICAL] Fall detected
+[2026-03-08 16:17:49] [CRITICAL] Fall detected
+[2026-03-08 16:17:50] [CRITICAL] Fall detected
+[2026-03-08 16:17:50] [CRITICAL] Fall detected
+[2026-03-08 16:17:50] [CRITICAL] Fall detected
+[2026-03-08 16:17:50] [CRITICAL] Fall detected
+[2026-03-08 16:17:50] [CRITICAL] Fall detected
+[2026-03-08 16:17:50] [CRITICAL] Fall detected
+[2026-03-08 16:17:50] [CRITICAL] Fall detected
+[2026-03-08 16:17:50] [CRITICAL] Fall detected
+[2026-03-08 16:17:50] [CRITICAL] Fall detected
+[2026-03-08 16:17:51] [CRITICAL] Fall detected
+[2026-03-08 16:17:51] [CRITICAL] Fall detected
+[2026-03-08 16:17:51] [CRITICAL] Fall detected
+[2026-03-08 16:17:51] [CRITICAL] Fall detected
+[2026-03-08 16:17:51] [CRITICAL] Fall detected
+[2026-03-08 16:17:51] [CRITICAL] Fall detected
+[2026-03-08 16:17:51] [CRITICAL] Fall detected
+[2026-03-08 16:17:51] [CRITICAL] Fall detected
+[2026-03-08 16:17:51] [CRITICAL] Fall detected
+[2026-03-08 16:17:52] [CRITICAL] Fall detected
+[2026-03-08 16:17:52] [CRITICAL] Fall detected
+[2026-03-08 16:17:52] [CRITICAL] Fall detected
+[2026-03-08 16:17:52] [CRITICAL] Fall detected
+[2026-03-08 16:17:55] [CRITICAL] Fall detected
+[2026-03-08 16:17:55] [CRITICAL] Fall detected
+[2026-03-08 16:17:55] [CRITICAL] Fall detected
+[2026-03-08 16:17:55] [CRITICAL] Fall detected
+[2026-03-08 16:17:56] [CRITICAL] Fall detected
+[2026-03-08 16:17:56] [CRITICAL] Fall detected
+[2026-03-08 16:17:56] [CRITICAL] Fall detected
+[2026-03-08 16:17:56] [CRITICAL] Fall detected
+[2026-03-08 16:17:56] [CRITICAL] Fall detected
+[2026-03-08 16:17:56] [CRITICAL] Fall detected
+[2026-03-08 16:17:56] [CRITICAL] Fall detected
+[2026-03-08 16:17:56] [CRITICAL] Fall detected
+[2026-03-08 16:17:57] [CRITICAL] Fall detected
+[2026-03-08 16:17:57] [CRITICAL] Fall detected
+[2026-03-08 16:17:57] [CRITICAL] Fall detected
+[2026-03-08 16:18:39] [CRITICAL] Fire detected
+[2026-03-08 16:18:47] [CRITICAL] Fire detected
+[2026-03-08 16:18:55] [CRITICAL] Fire detected
+[2026-03-08 16:19:03] [CRITICAL] Fire detected
+[2026-03-08 16:28:15] [CRITICAL] Fire detected
+[2026-03-08 16:28:27] [CRITICAL] Fire detected
+[2026-03-08 16:29:06] [CRITICAL] Fire detected
+[2026-03-08 16:31:12] [CRITICAL] Fall detected
+[2026-03-08 16:31:20] [CRITICAL] Fall detected
+[2026-03-08 16:31:26] [CRITICAL] Fall detected
+[2026-03-08 16:31:33] [CRITICAL] Fall detected
+[2026-03-08 16:34:53] [CRITICAL] Fire detected
+[2026-03-08 16:35:05] [CRITICAL] Fire detected
+[2026-03-08 16:36:42] [CRITICAL] Fire detected
+[2026-03-08 16:40:49] [CRITICAL] Fire detected
+[2026-03-08 16:41:10] [CRITICAL] Fire detected
+[2026-03-08 16:52:03] [CRITICAL] Fall detected
+[2026-03-08 16:52:12] [CRITICAL] Fall detected
+[2026-03-08 16:52:20] [CRITICAL] Fall detected
+[2026-03-08 16:52:28] [CRITICAL] Fall detected
+[2026-03-09 12:58:31] [CRITICAL] Fall detected
+[2026-03-09 12:58:32] [CRITICAL] Fall detected
+[2026-03-09 12:58:32] [CRITICAL] Fall detected
+[2026-03-09 12:58:32] [CRITICAL] Fall detected
+[2026-03-09 12:58:32] [CRITICAL] Fall detected
+[2026-03-09 12:58:32] [CRITICAL] Fall detected
+[2026-03-09 12:58:33] [CRITICAL] Fall detected
+[2026-03-09 12:58:33] [CRITICAL] Fall detected
+[2026-03-09 12:58:33] [CRITICAL] Fall detected
+[2026-03-09 12:58:33] [CRITICAL] Fall detected
+[2026-03-09 12:58:33] [CRITICAL] Fall detected
+[2026-03-09 12:58:33] [CRITICAL] Fall detected
+[2026-03-09 12:58:33] [CRITICAL] Fall detected
+[2026-03-09 12:58:33] [CRITICAL] Fall detected
+[2026-03-09 12:58:34] [CRITICAL] Fall detected
+[2026-03-09 12:58:34] [CRITICAL] Fall detected
+[2026-03-09 12:58:34] [CRITICAL] Fall detected
+[2026-03-09 12:58:34] [CRITICAL] Fall detected
+[2026-03-09 12:58:34] [CRITICAL] Fall detected
+[2026-03-09 12:58:37] [CRITICAL] Fall detected
+[2026-03-09 12:58:38] [CRITICAL] Fall detected
+[2026-03-09 12:58:38] [CRITICAL] Fall detected
+[2026-03-09 12:58:38] [CRITICAL] Fall detected
+[2026-03-09 12:58:38] [CRITICAL] Fall detected
+[2026-03-09 12:58:38] [CRITICAL] Fall detected
+[2026-03-09 12:58:38] [CRITICAL] Fall detected
+[2026-03-09 12:58:38] [CRITICAL] Fall detected
+[2026-03-09 12:58:39] [CRITICAL] Fall detected
+[2026-03-09 12:58:39] [CRITICAL] Fall detected
+[2026-03-09 12:58:39] [CRITICAL] Fall detected
+[2026-03-09 12:58:39] [CRITICAL] Fall detected
+[2026-03-09 12:58:39] [CRITICAL] Fall detected
+[2026-03-09 12:58:39] [CRITICAL] Fall detected
+[2026-03-09 12:58:39] [CRITICAL] Fall detected
+[2026-03-09 12:58:40] [CRITICAL] Fall detected
+[2026-03-09 12:58:40] [CRITICAL] Fall detected
+[2026-03-09 12:58:40] [CRITICAL] Fall detected
+[2026-03-09 12:58:40] [CRITICAL] Fall detected
+[2026-03-09 12:58:40] [CRITICAL] Fall detected
+[2026-03-09 12:58:40] [CRITICAL] Fall detected
+[2026-03-09 12:58:43] [CRITICAL] Fall detected
+[2026-03-09 12:58:44] [CRITICAL] Fall detected
+[2026-03-09 12:58:44] [CRITICAL] Fall detected
+[2026-03-09 12:58:44] [CRITICAL] Fall detected
+[2026-03-09 12:58:45] [CRITICAL] Fall detected
+[2026-03-09 12:58:45] [CRITICAL] Fall detected
+[2026-03-09 12:58:45] [CRITICAL] Fall detected
+[2026-03-09 12:58:45] [CRITICAL] Fall detected
+[2026-03-09 12:58:45] [CRITICAL] Fall detected
+[2026-03-09 12:58:45] [CRITICAL] Fall detected
+[2026-03-09 12:58:45] [CRITICAL] Fall detected
+[2026-03-09 12:58:45] [CRITICAL] Fall detected
+[2026-03-09 12:58:46] [CRITICAL] Fall detected
+[2026-03-09 12:58:46] [CRITICAL] Fall detected
+[2026-03-09 12:58:46] [CRITICAL] Fall detected
+[2026-03-09 12:58:46] [CRITICAL] Fall detected
+[2026-03-09 12:58:46] [CRITICAL] Fall detected
+[2026-03-09 12:58:46] [CRITICAL] Fall detected
+[2026-03-09 12:58:50] [CRITICAL] Fall detected
+[2026-03-09 12:59:37] [CRITICAL] Fire detected
+[2026-03-09 12:59:46] [CRITICAL] Fire detected
+[2026-03-09 13:03:10] [CRITICAL] Fire detected
+[2026-03-09 13:07:07] [CRITICAL] Person near fire detected
+[2026-03-09 13:07:54] [CRITICAL] Person near fire detected
+[2026-03-09 13:11:15] [CRITICAL] Fall detected
+[2026-03-09 13:11:22] [CRITICAL] Fall detected
+[2026-03-09 13:11:30] [CRITICAL] Fall detected
+[2026-03-09 13:12:52] [CRITICAL] Fall detected
+[2026-03-09 13:12:59] [CRITICAL] Fall detected
+[2026-03-09 13:13:07] [CRITICAL] Fall detected
+[2026-03-09 13:15:49] [CRITICAL] Person near fire detected
+[2026-03-09 13:17:15] [CRITICAL] Person near fire detected
+[2026-03-09 13:17:31] [CRITICAL] Person near fire detected
+[2026-03-09 13:18:02] [CRITICAL] Person near fire detected
+[2026-03-09 13:18:22] [CRITICAL] Person near fire detected
+[2026-03-09 13:28:17] [CRITICAL] Fall detected
+[2026-03-09 13:28:26] [CRITICAL] Fall detected
+[2026-03-09 13:28:34] [CRITICAL] Fall detected
+[2026-03-09 13:28:41] [CRITICAL] Fall detected
+[2026-03-09 13:28:49] [CRITICAL] Fall detected
+[2026-03-09 13:28:57] [CRITICAL] Fall detected
+[2026-03-09 13:29:05] [CRITICAL] Fall detected
+[2026-03-09 14:41:07] [CRITICAL] Fall detected
+[2026-03-09 14:41:23] [CRITICAL] Fall detected
+[2026-03-09 15:20:12] [CRITICAL] Person near fire distance: 145px
+[2026-03-09 17:30:57] [CRITICAL] Fall detected
+[2026-03-09 17:31:04] [CRITICAL] Fall detected
+[2026-03-09 17:33:00] [CRITICAL] Fall detected
+[2026-03-09 17:33:07] [CRITICAL] Fall detected
+[2026-03-09 17:33:13] [CRITICAL] Fall detected
+[2026-03-09 17:33:20] [CRITICAL] Fall detected
+[2026-03-09 20:45:11] [CRITICAL] Fall detected
+[2026-03-09 20:45:18] [CRITICAL] Fall detected
+[2026-03-09 20:46:42] [CRITICAL] Person near fire distance: 143px
+[2026-03-09 20:46:59] [CRITICAL] Person near fire distance: 115px
+[2026-03-09 20:47:11] [CRITICAL] Person near fire distance: 126px
+[2026-03-09 20:47:59] [CRITICAL] Fall detected
+[2026-03-09 20:48:03] [CRITICAL] Fall detected
+[2026-03-09 20:48:09] [CRITICAL] Fall detected
+[2026-03-09 21:03:00] [CRITICAL] Fall detected
+[2026-03-09 21:03:07] [CRITICAL] Fall detected
+[2026-03-09 21:03:14] [CRITICAL] Fall detected
+[2026-03-09 21:03:21] [CRITICAL] Fall detected
+[2026-03-09 21:03:28] [CRITICAL] Fall detected
+[2026-03-09 21:16:43] [CRITICAL] Fall detected
+[2026-03-09 21:16:49] [CRITICAL] Fall detected
+[2026-03-09 21:16:56] [CRITICAL] Fall detected
+[2026-03-09 21:17:03] [CRITICAL] Fall detected
+[2026-03-09 21:20:09] [CRITICAL] Person near fire detected
+[2026-03-09 21:27:54] [CRITICAL] Fall detected
+[2026-03-09 21:28:47] [CRITICAL] Fall detected
+[2026-03-10 10:22:52] [CRITICAL] Person near fire detected
+[2026-03-10 10:23:09] [CRITICAL] Person near fire detected
+[2026-03-10 10:25:41] [CRITICAL] Fall detected
+[2026-03-10 18:07:57] [CRITICAL] Person near fire detected
+[2026-03-10 18:13:39] [CRITICAL] Person near fire detected
+[2026-03-10 18:21:38] [CRITICAL] Person near fire detected
+[2026-03-10 18:24:16] [CRITICAL] Person near fire detected
+[2026-03-10 18:30:15] [CRITICAL] Person near fire distance: 145px
+[2026-03-10 18:31:29] [CRITICAL] Person near fire distance: 145px
+[2026-03-10 18:33:39] [CRITICAL] Person near fire distance: 145px
+[2026-03-10 18:35:02] [CRITICAL] Person near fire distance: 145px
+[2026-03-11 17:31:57] [CRITICAL] Person near fire distance: 145px
+[2026-03-11 18:54:44] [CRITICAL] Tilt/Fall detected
+[2026-03-11 19:04:00] [CRITICAL] Tilt detected
+[2026-03-11 19:04:54] [CRITICAL] Person near fire distance: 145px
+[2026-03-11 19:05:25] [CRITICAL] Tilt detected
+[2026-03-11 19:14:50] [CRITICAL] Person near fire distance: 145px
+[2026-03-11 19:15:46] [CRITICAL] Person near fire distance: 145px
+[2026-03-11 19:15:59] [CRITICAL] Person near fire distance: 129px
+[2026-03-11 19:20:59] [CRITICAL] Person near fire distance: 145px
+[2026-03-11 19:21:22] [CRITICAL] Person near fire distance: 145px
+[2026-03-11 19:21:47] [CRITICAL] Person near fire distance: 145px
+[2026-03-11 19:22:28] [CRITICAL] Person near fire distance: 145px
+[2026-03-11 19:22:40] [CRITICAL] Person near fire distance: 138px
+[2026-03-11 19:23:11] [CRITICAL] Person near fire distance: 145px
+[2026-03-11 19:23:52] [CRITICAL] Person near fire distance: 145px
+[2026-03-11 19:27:19] [CRITICAL] Person near fire distance: 145px
+[2026-03-11 19:27:49] [CRITICAL] Person near fire distance: 145px
+[2026-03-11 19:30:42] [CRITICAL] Person near fire distance: 145px
+[2026-03-11 19:31:24] [CRITICAL] Person near fire distance: 145px
+[2026-03-11 19:32:00] [CRITICAL] Person near fire distance: 145px
+[2026-03-11 19:34:38] [CRITICAL] Person near fire distance: 145px
+[2026-03-11 19:36:19] [CRITICAL] Person near fire distance: 145px
+[2026-03-11 19:38:15] [CRITICAL] Person near fire distance: 145px
+[2026-03-11 19:43:06] [CRITICAL] Person near fire distance: 145px
+[2026-03-11 19:44:57] [CRITICAL] Tilt detected
+[2026-03-11 19:47:08] [CRITICAL] Tilt detected
+[2026-03-11 19:50:18] [CRITICAL] Tilt detected
+[2026-03-11 19:52:00] [CRITICAL] Tilt detected
+[2026-03-11 19:54:08] [CRITICAL] Tilt detected
+[2026-03-11 19:54:32] [CRITICAL] Tilt detected
+[2026-03-11 19:56:11] [CRITICAL] Tilt detected
+[2026-03-11 19:58:32] [CRITICAL] Tilt detected
+[2026-03-11 19:58:54] [CRITICAL] Tilt detected
+[2026-03-11 19:59:13] [CRITICAL] Tilt detected
+[2026-03-11 19:59:32] [CRITICAL] Tilt detected
+[2026-03-11 20:03:38] [CRITICAL] Tilt detected
+[2026-03-11 20:05:50] [CRITICAL] Tilt detected
+[2026-03-11 20:22:59] [CRITICAL] Person near fire distance: 132px
+[2026-03-13 09:34:14] [CRITICAL] Person near fire distance: 132px
+[2026-03-13 09:36:40] [CRITICAL] Person near fire distance: 132px
+[2026-03-13 09:38:00] [CRITICAL] Person approaching fire distance: 132px
+[2026-03-13 09:38:58] [CRITICAL] Tilt detected
+[2026-03-13 10:16:02] [CRITICAL] Person approaching fire distance: 132px
+[2026-03-13 10:16:15] [CRITICAL] Person approaching fire distance: 67px
+[2026-03-13 10:16:50] [CRITICAL] Tilt detected
+[2026-03-13 12:36:34] [CRITICAL] Person approaching fire distance: 132px
+[2026-03-13 12:36:43] [CRITICAL] Person approaching fire distance: 11px
+[2026-03-13 12:37:01] [CRITICAL] Tilt detected
+[2026-03-21 16:58:42] [INFO] User sharanya started fire detection
+[2026-03-21 16:59:12] [CRITICAL] Person approaching fire distance: 132px
+[2026-03-21 16:59:21] [CRITICAL] Person approaching fire distance: 123px
+[2026-03-21 16:59:29] [CRITICAL] Person approaching fire distance: 64px
+[2026-03-21 16:59:37] [CRITICAL] Person approaching fire distance: 143px
+[2026-03-21 17:02:54] [INFO] User sharanya started fire detection
+[2026-03-21 17:03:15] [CRITICAL] Person approaching fire distance: 132px
+[2026-03-21 17:03:24] [CRITICAL] Person approaching fire distance: 123px
+[2026-03-21 17:03:32] [CRITICAL] Person approaching fire distance: 63px
+[2026-03-21 17:03:40] [CRITICAL] Person approaching fire distance: 92px
+[2026-03-21 17:04:31] [INFO] User sharanya started fire detection
+[2026-03-21 17:04:50] [CRITICAL] Person approaching fire distance: 132px
+[2026-03-21 17:04:59] [CRITICAL] Person approaching fire distance: 123px
+[2026-03-21 17:05:07] [CRITICAL] Person approaching fire distance: 67px
+[2026-03-21 17:05:15] [CRITICAL] Person approaching fire distance: 66px
+[2026-03-21 17:05:27] [CRITICAL] Person approaching fire distance: 143px
+[2026-03-21 18:55:55] [INFO] User sharanya started fire detection
+[2026-03-21 18:56:14] [CRITICAL] Person approaching fire distance: 132px
+[2026-03-21 18:56:22] [CRITICAL] Person approaching fire distance: 67px
+[2026-03-21 18:56:29] [CRITICAL] Person approaching fire distance: 71px
+[2026-03-21 18:56:37] [INFO] User sharanya started fire detection
+[2026-03-21 18:56:39] [CRITICAL] Person approaching fire distance: 143px
+[2026-03-21 18:56:55] [CRITICAL] Person approaching fire distance: 132px
+[2026-03-21 18:57:03] [CRITICAL] Person approaching fire distance: 123px
+[2026-03-21 18:57:11] [CRITICAL] Person approaching fire distance: 68px
+[2026-03-21 18:57:19] [CRITICAL] Person approaching fire distance: 11px
+[2026-03-21 18:57:27] [CRITICAL] Person approaching fire distance: 143px
+[2026-03-21 18:57:56] [INFO] User sharanya started fire detection
+[2026-03-21 18:58:15] [CRITICAL] Person approaching fire distance: 132px
+[2026-03-21 18:58:25] [CRITICAL] Person approaching fire distance: 123px
+[2026-03-21 18:58:33] [CRITICAL] Person approaching fire distance: 68px
+[2026-03-21 18:58:43] [CRITICAL] Person approaching fire distance: 143px

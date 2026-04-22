@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - Smart Alert Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: #1a1a2e; min-height: 100vh; color: #fff; }
+        .admin-sidebar { position: fixed; left: 0; top: 0; width: 260px; height: 100vh; background: linear-gradient(180deg, #16213e 0%, #0f3460 100%); box-shadow: 4px 0 15px rgba(0, 0, 0, 0.3); z-index: 100; }
+        .admin-logo { padding: 25px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; gap: 12px; }
+        .admin-logo i { font-size: 32px; color: #e94560; }
+        .admin-logo span { font-size: 20px; font-weight: 700; color: #fff; }
+        .admin-logo small { display: block; font-size: 11px; color: #94a3b8; font-weight: 400; }
+        .admin-nav { padding: 20px 0; }
+        .nav-section { padding: 10px 20px; font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 1px; margin-top: 10px; }
+        .admin-nav a { display: flex; align-items: center; gap: 12px; padding: 14px 25px; color: #94a3b8; text-decoration: none; transition: all 0.3s; border-left: 3px solid transparent; }
+        .admin-nav a:hover, .admin-nav a.active { background: rgba(233, 69, 96, 0.1); color: #e94560; border-left-color: #e94560; }
+        .admin-nav a i { width: 20px; font-size: 18px; }
+        .main-content { margin-left: 260px; padding: 30px; min-height: 100vh; }
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .page-title h1 { font-size: 28px; font-weight: 700; color: #fff; }
+        .page-title p { color: #64748b; font-size: 14px; }
+
+        .charts-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-bottom: 25px; }
+        .card { background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 25px; }
+        .card-title { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .card-title i { color: #e94560; }
+
+        .chart-container { position: relative; height: 250px; }
+
+        .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 25px; }
+        .stat-card { background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 20px; text-align: center; transition: all 0.3s; }
+        .stat-card:hover { transform: translateY(-3px); background: rgba(233, 69, 96, 0.1); }
+        .stat-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 24px; }
+        .stat-icon.users { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
+        .stat-icon.alerts { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .stat-icon.videos { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+        .stat-icon.views { background: rgba(168, 85, 247, 0.2); color: #a855f7; }
+        .stat-value { font-size: 28px; font-weight: 700; color: #fff; }
+        .stat-label { font-size: 12px; color: #64748b; margin-top: 5px; }
+
+        .data-table { background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 20px; }
+        .data-table h3 { font-size: 16px; margin-bottom: 15px; color: #fff; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        th { color: #64748b; font-weight: 500; font-size: 12px; text-transform: uppercase; }
+        td { color: #fff; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="admin-sidebar">
+        <div class="admin-logo"><i class="fas fa-shield-alt"></i><div><span>Smart Alert</span><small>Admin Panel</small></div></div>
+        <nav class="admin-nav">
+            <div class="nav-section">Main</div>
+            <a href="/admin"><i class="fas fa-chart-pie"></i><span>Dashboard</span></a>
+            <a href="/admin/users"><i class="fas fa-users"></i><span>User Management</span></a>
+            <a href="/admin/alerts"><i class="fas fa-bell"></i><span>Alerts</span></a>
+            <div class="nav-section">Analytics</div>
+            <a href="/admin/analytics" class="active"><i class="fas fa-chart-line"></i><span>Analytics</span></a>
+            <a href="/admin/activity"><i class="fas fa-history"></i><span>Activity Log</span></a>
+            <div class="nav-section">System</div>
+            <a href="/dashboard"><i class="fas fa-home"></i><span>Back to App</span></a>
+            <a href="/logout"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <div class="top-bar">
+            <div class="page-title">
+                <h1>Analytics Dashboard</h1>
+                <p>System performance and usage analytics</p>
+            </div>
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-icon users"><i class="fas fa-users"></i></div>
+                <div class="stat-value" id="totalUsers">0</div>
+                <div class="stat-label">Total Users</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon alerts"><i class="fas fa-bell"></i></div>
+                <div class="stat-value" id="totalAlerts">0</div>
+                <div class="stat-label">Total Alerts</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon videos"><i class="fas fa-video"></i></div>
+                <div class="stat-value" id="totalVideos">0</div>
+                <div class="stat-label">Videos Processed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon views"><i class="fas fa-eye"></i></div>
+                <div class="stat-value" id="totalViews">0</div>
+                <div class="stat-label">Page Views</div>
+            </div>
+        </div>
+
+        <div class="charts-grid">
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-user-plus"></i> User Growth (Last 7 Days)</h3>
+                <div class="chart-container"><canvas id="userGrowthChart"></canvas></div>
+            </div>
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-bell"></i> Detection Stats (Last 7 Days)</h3>
+                <div class="chart-container"><canvas id="detectionChart"></canvas></div>
+            </div>
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-eye"></i> Page Views (Last 7 Days)</h3>
+                <div class="chart-container"><canvas id="pageViewsChart"></canvas></div>
+            </div>
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-clock"></i> Hourly Activity (Today)</h3>
+                <div class="chart-container"><canvas id="hourlyChart"></canvas></div>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px;">
+            <div class="data-table">
+                <h3><i class="fas fa-star" style="color: #e94560;"></i> Top Users</h3>
+                <table>
+                    <thead><tr><th>User</th><th>Page Views</th></tr></thead>
+                    <tbody id="topUsersTable"><tr><td colspan="2">Loading...</td></tr></tbody>
+                </table>
+            </div>
+            <div class="data-table">
+                <h3><i class="fas fa-file" style="color: #e94560;"></i> Popular Pages</h3>
+                <table>
+                    <thead><tr><th>Page</th><th>Views</th></tr></thead>
+                    <tbody id="popularPagesTable"><tr><td colspan="2">Loading...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let userGrowthChart, detectionChart, pageViewsChart, hourlyChart;
+
+        async function loadStats() {
+            try {
+                const response = await fetch('/api/admin/stats');
+                const data = await response.json();
+                document.getElementById('totalUsers').textContent = data.total_users;
+                document.getElementById('totalAlerts').textContent = data.total_alerts;
+                document.getElementById('totalVideos').textContent = data.total_videos;
+                document.getElementById('totalViews').textContent = data.total_page_views;
+            } catch (e) { console.error(e); }
+        }
+
+        async function loadUserGrowth() {
+            try {
+                const response = await fetch('/api/analytics/user-growth');
+                const data = await response.json();
+
+                if (userGrowthChart) userGrowthChart.destroy();
+                userGrowthChart = new Chart(document.getElementById('userGrowthChart'), {
+                    type: 'line',
+                    data: {
+                        labels: data.map(d => d.date),
+                        datasets: [{
+                            label: 'New Users',
+                            data: data.map(d => d.count),
+                            borderColor: '#e94560',
+                            backgroundColor: 'rgba(233, 69, 96, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#64748b' } }, y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#64748b' } } } }
+                });
+            } catch (e) { console.error(e); }
+        }
+
+        async function loadDetectionStats() {
+            try {
+                const response = await fetch('/api/analytics/detection-stats');
+                const data = await response.json();
+
+                if (detectionChart) detectionChart.destroy();
+                detectionChart = new Chart(document.getElementById('detectionChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: data.map(d => d.date),
+                        datasets: [
+                            { label: 'Fire', data: data.map(d => d.fire), backgroundColor: '#f97316' },
+                            { label: 'Fall', data: data.map(d => d.fall), backgroundColor: '#eab308' }
+                        ]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#fff' } } }, scales: { x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#64748b' } }, y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#64748b' } } } }
+                });
+            } catch (e) { console.error(e); }
+        }
+
+        async function loadPageViews() {
+            try {
+                const response = await fetch('/api/analytics/page-views');
+                const data = await response.json();
+
+                if (pageViewsChart) pageViewsChart.destroy();
+                pageViewsChart = new Chart(document.getElementById('pageViewsChart'), {
+                    type: 'line',
+                    data: {
+                        labels: data.map(d => d.date),
+                        datasets: [{ label: 'Views', data: data.map(d => d.views), borderColor: '#22c55e', backgroundColor: 'rgba(34, 197, 94, 0.1)', fill: true, tension: 0.4 }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#64748b' } }, y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#64748b' } } } }
+                });
+            } catch (e) { console.error(e); }
+        }
+
+        async function loadHourlyActivity() {
+            try {
+                const response = await fetch('/api/analytics/hourly-activity');
+                const data = await response.json();
+
+                if (hourlyChart) hourlyChart.destroy();
+                hourlyChart = new Chart(document.getElementById('hourlyChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: data.map(d => d.hour),
+                        datasets: [{ label: 'Activity', data: data.map(d => d.activities), backgroundColor: '#a855f7' }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#64748b', maxRotation: 45 } }, y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#64748b' } } } }
+                });
+            } catch (e) { console.error(e); }
+        }
+
+        async function loadTopUsers() {
+            try {
+                const response = await fetch('/api/analytics/user-activity');
+                const data = await response.json();
+                document.getElementById('topUsersTable').innerHTML = data.length ? data.map(u => `<tr><td>${u.username}</td><td>${u.page_views}</td></tr>`).join('') : '<tr><td colspan="2" style="color:#64748b;">No data</td></tr>';
+            } catch (e) { console.error(e); }
+        }
+
+        async function loadPopularPages() {
+            try {
+                const response = await fetch('/api/analytics/popular-pages');
+                const data = await response.json();
+                document.getElementById('popularPagesTable').innerHTML = data.length ? data.map(p => `<tr><td>${p.page}</td><td>${p.views}</td></tr>`).join('') : '<tr><td colspan="2" style="color:#64748b;">No data</td></tr>';
+            } catch (e) { console.error(e); }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadStats();
+            loadUserGrowth();
+            loadDetectionStats();
+            loadPageViews();
+            loadHourlyActivity();
+            loadTopUsers();
+            loadPopularPages();
+        });
+    </script>
+</body>
+</html>
